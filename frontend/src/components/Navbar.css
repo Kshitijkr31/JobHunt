@@ -1,0 +1,51 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 16px;
+        height: 56px;
+    }
+
+    .navbar ul {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: white;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 56px;
+        right: 0;
+        width: 100%;
+        padding: 16px;
+        border-radius: 8px;
+    }
+
+    .navbar-menu-trigger {
+        display: block;
+        cursor: pointer;
+        background: #1b02f8;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 18px;
+        border: none;
+    }
+
+    .navbar-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Styles for mobile (extra small screens) */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0 12px;
+    }
+
+    .navbar-title {
+        font-size: 1rem;
+    }
+}
