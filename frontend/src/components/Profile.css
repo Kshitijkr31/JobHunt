@@ -1,10 +1,10 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
  
     :root .profile-main{
-        margin-top: 1rem;
-        margin-left: 0.5rem;
-        width: 21.5rem;
+        margin-top: 4rem;
+        margin-left: 1rem;
+        width: 24rem;
     }
  .profile-img{
     margin-top: -1rem;
@@ -19,14 +19,14 @@
 }
 
 :root .profile-btn{
-    margin-left: 108px;
+    margin-left: 11rem;
     border-radius: 50px;
     background-color: aqua;
     color: black;
 } 
 
 :root .applied-job-head{
-    margin-left: -33rem;
+    margin-left: -31rem;
 }
 
 .applied-job-head .applied-jobh1{
@@ -44,9 +44,9 @@
 
 .p-head{
     margin-top: 5px;
-    width: 8rem;
+    width: 13rem;
     margin-left: 0rem;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 :root .resume-label{

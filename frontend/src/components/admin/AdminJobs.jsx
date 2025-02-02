@@ -22,7 +22,7 @@ const AdminJobs = () => {
         <div>
             <Navbar />
             <div className='comp-job-create w-full mx-auto my-5 ml-[10rem]'>
-                <div className='flex items-center  my-5 mt-[6rem] '>
+                <div className='compp flex items-center  my-5 mt-[6rem] '>
                     <Input
                         className="w-fit "
                         placeholder="Filter by name"

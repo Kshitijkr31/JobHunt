@@ -24,7 +24,7 @@ const AdminJobsTable = () => {
         setFilterJobs(filteredJobs);
     },[allAdminJobs,searchJobByText])
     return (
-        <div>
+        <div className='ajt'>
                 <TableCaption className='admin-tb-cap w-[66rem] mt-4 mb-2'>A list of your recent  posted jobs</TableCaption>
             <Table className="admin-main w-[72rem]">
                 <TableHeader>

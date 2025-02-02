@@ -1,12 +1,12 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
-.footer-mainn{
-    width: 308px;
+@media (max-width: 750px) {
+:root .footer-mainn{
+    width: 26rem;
     margin-left: 0;
 }
 
- .footer-main{
-    margin-left: -45rem;
+ .footer-mainn .footer-main{
+    margin-left: -40rem;
  }
  
 

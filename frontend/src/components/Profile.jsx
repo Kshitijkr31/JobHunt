@@ -29,9 +29,14 @@ const Profile = () => {
                             <AvatarImage src={user?.profile?.profilePhoto || 'https://path/to/placeholder-image.jpg'}
                         alt="profile" />
                         </Avatar>
+                        
                         <div>
+                        <Button 
+                    onClick={() => setOpen(true)} 
+                    className=" profile-btn text-right ml-[37rem] mt-[-18rem] bg-blue-800 text-white hover:origin-center transition-transform transform hover:scale-125 active:scale-150" variant="outline"><Pen /></Button>
                             <h1 className='profile-head font-medium text-xl'>
                                 {user?.fullname}</h1>
+                                
                             <p className='p-head'>
                                 {user?.profile?.bio}  </p>
                         </div>
@@ -47,9 +52,7 @@ const Profile = () => {
                         <Contact />
                         <span>
                             {user?.phoneNumber}</span>
-                    <Button 
-                    onClick={() => setOpen(true)} 
-                    className=" profile-btn text-right ml-[37rem] mt-[-18rem] bg-blue-800 text-white hover:origin-center transition-transform transform hover:scale-125 active:scale-150" variant="outline"><Pen /></Button>
+                    
                     </div>
                 </div>
                 <div className='skills-main my-5'>

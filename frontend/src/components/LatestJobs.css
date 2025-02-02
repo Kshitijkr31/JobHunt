@@ -4,13 +4,12 @@
 }
 
 
-@media (max-width:768px) {
+@media (max-width:750px) {
  
     .latest-jobs-grid{
-     
         width: 27rem;
         display: block;
-        margin-left: -7rem;
+        margin-left: -5rem;
     }
 
     .latest-jobs-container .latest-jobs-title{

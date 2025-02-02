@@ -1,9 +1,10 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
  
 :root .filter-main{
-    margin-top: 1rem;
-    margin-left: 1rem;
+    width: 22rem;
+    margin-top: -4rem;
+    margin-left: 0rem;
 }
 
 

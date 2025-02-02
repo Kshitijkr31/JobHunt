@@ -54,7 +54,7 @@ const navigate = useNavigate();
       <TableCaption className='apply-tb-cap w-64 text-center ml-[24rem]'>
         A list of your recent applied user
       </TableCaption>
-      <Table className='apply-main mt-3'>
+      <Table className=' apply-main mt-3'>
         <TableHeader>
           <TableRow>
             <TableHead>Full Name</TableHead>

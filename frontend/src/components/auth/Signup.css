@@ -1,10 +1,10 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     
     :root .signup-main {
         width: 21rem;
-        margin-top: 0rem;
-        margin-left: 0.5rem;
+        margin-top: 23px;
+        margin-left: 1.5rem;
 
     }
     :root .signup-form{

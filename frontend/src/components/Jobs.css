@@ -1,21 +1,22 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
  
 :root .filter-container{
-    margin-top: 9rem;
-        margin-left: 0rem;
-        width: 25rem;
+    margin-top: 8rem;
+    margin-left: 4rem;
+    width: 22rem;
 }
 
 .job-fl{
-    position: relative;
+    margin-top: 4rem;
+        position: relative;
 }
 
 
 :root .flexbox-main{
     display: flex;
-            margin-top: 5rem;
-            margin-left: -4rem;
+            margin-top: 0rem;
+            margin-left: -1rem;
             flex-direction: column;
 }
 

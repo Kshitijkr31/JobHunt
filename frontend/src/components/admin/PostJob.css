@@ -1,11 +1,12 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
 
     
     :root .post-main{
         font-size: 0px;
         margin-top: 4rem;
         width: 23rem;
+        margin-left: 3rem;
     }
 
 :root .btn-post{

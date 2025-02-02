@@ -1,5 +1,5 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
  
  :root .applied-main{
     margin-left: 0;
@@ -7,7 +7,7 @@
  }
 
 :root .table-main{
-    width: 38%;
+    width: 39%;
     margin-left: 34rem;
         overflow-x: auto;
 }

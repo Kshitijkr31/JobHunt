@@ -1,5 +1,5 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
  
 :root .jdh1{
         margin-left: 2rem;
@@ -15,7 +15,7 @@
 
 :root .desc-main{
         margin-left: 2rem;
-        width: 30rem;
+        width: 23rem;
 }
 
 :root .btn-app{

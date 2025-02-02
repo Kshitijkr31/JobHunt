@@ -1,15 +1,15 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     
   
 
-:root .comp-create{
+:root .admin-create{
     margin-top: -5rem;
     margin-left: 3rem;
-    width: 16rem;
+    width: 19rem;
 }
-.comp-create input{
-   width: 15rem;
+.admin-create input{
+   width: 19rem;
 }
 
 

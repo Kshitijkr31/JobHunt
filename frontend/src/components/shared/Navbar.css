@@ -1,40 +1,38 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
-  :root .navbar{
-width: 23rem;
-   }
+@media (max-width: 750px) {
+   :root .navbar {
+    width: 26.5rem;
+  }
 
-.navbar .heading-main{
-    margin-left: -1rem;
+  .navbar .heading-main {
+    margin-left: 0rem;
     font-size: 20px;
-}
+  }
 
-.navbar .main-gap{
+  .navbar .main-gap {
     font-size: 10px;
-    width: 57rem;
+    width: 60rem;
     gap: 9px;
     justify-content: center;
     align-items: center;
     margin-left: -50rem;
-}
-.small-pop{
+  }
+  .small-pop {
     margin-right: 1rem;
     width: 18rem;
-}
+  }
 
-.photo-main{
-    margin-left: 2rem;
-}
+  .photo-main {
+    margin-left: -2rem;
+  }
 
-.login-btn{
+  .login-btn {
     height: 2rem;
     margin-left: -1.5rem;
     width: 3rem;
-}
-.signup-btn{
+  }
+  .signup-btn {
     height: 2rem;
     width: 3.5rem;
-}
-
-
+  }
 }

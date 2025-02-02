@@ -1,11 +1,14 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     
-  
+  :root .login-main{
+    margin-left: 22rem;
+    width: 0rem;
+  }
 
     .login-main .login-form{
-        margin-left: -42rem;
-        width: 22rem;
+        margin-left: -18rem;
+        width: 25rem;
 }
 
 .login-form .submit-signup{

@@ -1,9 +1,10 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     
-    .tb-cap{
-        margin-top: -4rem;
-        margin-left: -24rem;
+    :root .tb-cap{
+      width: 28rem;
+      margin-top: -8rem;
+      margin-left: -5rem;
     }
   :root .comp-main{
     display: block;

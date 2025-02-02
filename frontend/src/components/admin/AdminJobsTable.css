@@ -1,13 +1,15 @@
 /* Styles for tablets and below */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
 
     
-    .admin-tb-cap{
+    :root .admin-tb-cap{
+        width: 18rem;
         margin-top: 0rem;
-        margin-left: -24rem;
+        margin-left: 1rem;
     }
 
     :root .admin-main{
+        margin-left: -1rem;
         display: block;
         width: 22rem;
         font-size: 8px;
@@ -15,7 +17,9 @@
     :root .edit-pops{
         margin-left: -4rem;
     }
-
+.ajt{
+    margin-left: 4rem;
+}
 
 }
      
