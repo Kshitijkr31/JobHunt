@@ -14,12 +14,6 @@ dotenv.config({});
 
 const app = express();
  
-app.get("/home", (req, res) => {
-    return res.status(200).json({
-        message: "I am from backend",
-        success: true,
-    });
-});
 
 // Middleware
 app.use(express.json());
@@ -28,10 +22,11 @@ app.use(cookieParser());
 
 // Set up CORS
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Update if deployed
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",  // Default to local if not set
     credentials: true,
 };
 app.use(cors(corsOptions));
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -41,6 +36,9 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
+app.get("/",(req,res)=>{
+    res.send("Jobhunt API Working")
+})
 // Start Server
 app.listen(PORT, () => {
     connectDB();
