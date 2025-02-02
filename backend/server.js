@@ -31,7 +31,7 @@ app.use(cookieParser());
 
 // Set up CORS
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Update if deployed
+    origin: "process.env.FRONTEND_URL" || "http://localhost:5173", // Update if deployed
     credentials: true,
 };
 app.use(cors(corsOptions));
