@@ -1,0 +1,56 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+ 
+    :root .profile-main{
+        margin-top: 1rem;
+        margin-left: 0.5rem;
+        width: 21.5rem;
+    }
+ .profile-img{
+    margin-top: -1rem;
+
+ }   
+
+:root .profile-skills{
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+:root .profile-btn{
+    margin-left: 108px;
+    border-radius: 50px;
+    background-color: aqua;
+    color: black;
+} 
+
+:root .applied-job-head{
+    margin-left: -33rem;
+}
+
+.applied-job-head .applied-jobh1{
+    margin-left: 35rem;
+}
+
+.pno{
+    width: 20rem;
+}
+
+.profile-head{
+    margin-top: -1rem;
+    width: 11rem;
+}
+
+.p-head{
+    margin-top: 5px;
+    width: 8rem;
+    margin-left: 0rem;
+    font-size: 11px;
+}
+
+:root .resume-label{
+    margin-left: -8rem;
+}
+ }
+ 

@@ -16,6 +16,7 @@ import {
 import { toast } from "sonner";
 import { useSelector } from 'react-redux'
 import useGetCompanyById from '@/hooks/useGetCompanyById'
+import './CompanySetup.css';
 
 const CompanySetup = () => {
   const params = useParams();
@@ -88,17 +89,17 @@ const CompanySetup = () => {
   return (
     <div>
       <Navbar />
-      <div className='w-[45rem] mx-auto my-10 ml-[25rem] mt-[-8rem]'>
-        <form onSubmit={submitHandler}>
-          <div className='flex items-center gap-5 p-8'>
             <Button
               onClick={() => navigate("/admin/companies")}
               variant='outline'
-              className='bg-[#000000] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
+              className='bg-[#000000] btn-bck ml-24 mt-[-4rem] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
             >
               <ArrowLeft />
               <span>Back</span>
             </Button>
+      <div className='setup-main w-[45rem]  mx-auto my-10 ml-[25rem] mt-[-8rem]'>
+        <form onSubmit={submitHandler}>
+          <div className='flex items-center gap-5 p-8'>
             <h1 className='font-bold text-xl'>Update Company</h1>
           </div>
           <div className='grid grid-cols-2 gap-4 '>
@@ -148,7 +149,7 @@ const CompanySetup = () => {
             <Input
               type='file'
               accept='image/*'
-              className='ml-[21rem] w-[22rem]'
+              className='ml-[21rem] w-[22rem] up-com'
               onChange={changeFileHandler}
             />
           </div>

@@ -6,6 +6,7 @@ import { APPLICATION_API_END_POINT } from '@/utils/constant';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAllApplicants } from '@/redux/applicationSlice';
+import './Applicants.css';
 
 const Applicants = () => {
     const params = useParams();
@@ -26,8 +27,8 @@ const Applicants = () => {
     return (
         <div>
             <Navbar />
-            <div className='w-[66rem] mx-auto ml-[10rem] mt-[-16rem]'>
-                <h1 className='font-bold text-xl my-5'>Applicants (
+            <div className=' applicant-main w-[66rem] mx-auto ml-[10rem] mt-[-8rem]'>
+                <h1 className=' font-bold text-xl my-5'>Applicants (
                     {applicants?.applications?.length})
                      </h1>
                 <ApplicantsTable />

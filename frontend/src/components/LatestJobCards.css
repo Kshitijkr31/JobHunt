@@ -1,0 +1,17 @@
+@media (max-width:1050px) {
+ 
+}
+
+@media (max-width:900px) {
+  
+    
+}
+
+@media (max-width:750px) {
+  
+#carddesc{
+    height: 23rem;
+    margin-left: 4rem;
+    width: 22.5rem;
+}
+}

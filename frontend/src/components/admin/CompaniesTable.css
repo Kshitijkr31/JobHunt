@@ -1,0 +1,18 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+    
+    .tb-cap{
+        margin-top: -4rem;
+        margin-left: -24rem;
+    }
+  :root .comp-main{
+    display: block;
+    font-size: 8px;
+  }
+:root .edit-pop{
+    margin-left: -4rem;
+}
+
+
+}
+     

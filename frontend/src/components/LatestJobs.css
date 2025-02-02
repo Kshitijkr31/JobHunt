@@ -1,0 +1,20 @@
+.latest-jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+}
+
+
+@media (max-width:768px) {
+ 
+    .latest-jobs-grid{
+     
+        width: 27rem;
+        display: block;
+        margin-left: -7rem;
+    }
+
+    .latest-jobs-container .latest-jobs-title{
+        font-size: 20px;
+        margin-left: -5rem;
+    }
+}

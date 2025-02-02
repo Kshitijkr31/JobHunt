@@ -1,0 +1,54 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+    
+    :root .signup-main {
+        width: 21rem;
+        margin-top: 0rem;
+        margin-left: 0.5rem;
+
+    }
+    :root .signup-form{
+        margin-left: -42rem;
+        width: 22rem;
+}
+
+:root .submit-signupp{
+    margin-top: 0rem;
+    margin-left: 14rem;
+}
+
+.signup-main .img-cng{
+    display: block;
+    margin-top: -1.5rem;
+}
+.signup-main .lbl{
+    margin-left: 13rem;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+     

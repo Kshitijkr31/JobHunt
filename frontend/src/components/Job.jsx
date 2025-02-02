@@ -4,6 +4,7 @@ import { Badge } from "./ui/badge";
 import { Bookmark } from "lucide-react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Job = ({ job }) => {
   const navigate = useNavigate();
@@ -14,6 +15,25 @@ const Job = ({ job }) => {
     const currentTime = new Date();
     const timeDifference = currentTime - createdAt;
     return Math.floor(timeDifference / (1000 * 24 * 60 * 60));
+  };
+
+  const handleSaveJob = () => {
+    toast.success("Your job is successfully saved!", {
+      position: "top-right",
+      duration: 3000, 
+      style: {
+        marginTop:'4rem'
+      },
+    });
+  };
+  const handleBookMarkJob = () => {
+    toast.success("Your job is BookMarked", {
+      position: "top-right",
+      duration: 3000, 
+      style: {
+        marginTop:'4rem'
+      },
+    });
   };
 
   return (
@@ -27,7 +47,7 @@ const Job = ({ job }) => {
         <Button
           variant='outline'
           className='rounded-full transition-transform transform hover:scale-110 active:scale-125'
-          size='icon'
+          size='icon' onClick={handleBookMarkJob}
         >
           <Bookmark />
         </Button>
@@ -70,7 +90,7 @@ const Job = ({ job }) => {
         >
           Details
         </Button>
-        <Button className='bg-[#7209b7] transition-transform transform hover:scale-110 active:scale-125'>
+        <Button className='bg-[#7209b7] transition-transform transform hover:scale-110 active:scale-125' onClick={handleSaveJob} >
           Save For Later
         </Button>
       </div>

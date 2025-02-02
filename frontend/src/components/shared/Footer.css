@@ -1,0 +1,34 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+.footer-mainn{
+    width: 308px;
+    margin-left: 0;
+}
+
+ .footer-main{
+    margin-left: -45rem;
+ }
+ 
+
+ .footer-head{
+    width: 24rem;
+    margin-top: -1rem;
+    margin-left: 38rem;
+    font-size: 13px;
+ }
+
+.footer-p{
+    margin-left: 39rem;
+}
+
+.footer-icons{
+    margin-left: 1rem;
+}
+
+
+
+
+
+
+ }
+ 

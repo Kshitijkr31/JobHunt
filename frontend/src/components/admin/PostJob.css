@@ -1,0 +1,28 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+
+    
+    :root .post-main{
+        font-size: 0px;
+        margin-top: 4rem;
+        width: 23rem;
+    }
+
+:root .btn-post{
+    margin-left: 1rem;
+    width: 5rem;
+    height: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+     

@@ -1,0 +1,20 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+    
+    :root .com-main{
+margin-top: 20rem;
+margin-left: 1rem;
+    }
+  
+    .com-main .btn{
+        font-size: 11px;
+        width: 6rem;
+        margin-top: 0rem;
+        margin-left: 0rem;
+    }
+
+
+
+
+}
+     

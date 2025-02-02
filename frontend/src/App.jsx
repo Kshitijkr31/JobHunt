@@ -17,6 +17,7 @@ import PostJob from './components/admin/PostJob'
 import Applicants from './components/admin/Applicants'
 import JobSetup from './components/admin/JobSetup'
 import ProtectedRoute from './components/admin/ProtectedRoute'
+import { Toaster } from "react-hot-toast";
 
 const appRouter = createBrowserRouter([
   { path: '/', element: <Home /> },
@@ -79,10 +80,14 @@ const appRouter = createBrowserRouter([
 
 function App() {
   return (
+    <>
+    <Toaster />
     <div className="app-container">
       <RouterProvider router={appRouter} />
     </div>
+    </>
   );
+  
 }
 
 export default App;

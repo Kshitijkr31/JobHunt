@@ -5,7 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Edit2, Eye, MoreHorizontal } from 'lucide-react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import './AdminJobsTable.css';
 const AdminJobsTable = () => { 
     const {allAdminJobs, searchJobByText} = useSelector(store=>store.job);
 
@@ -25,8 +25,8 @@ const AdminJobsTable = () => {
     },[allAdminJobs,searchJobByText])
     return (
         <div>
-                <TableCaption className='w-[66rem] mt-4 mb-2'>A list of your recent  posted jobs</TableCaption>
-            <Table className="w-[72rem]">
+                <TableCaption className='admin-tb-cap w-[66rem] mt-4 mb-2'>A list of your recent  posted jobs</TableCaption>
+            <Table className="admin-main w-[72rem]">
                 <TableHeader>
                     <TableRow>
                         <TableHead>Company Name</TableHead>
@@ -44,9 +44,9 @@ const AdminJobsTable = () => {
                                 <TableCell>{new Date(job?.createdAt).toLocaleDateString("en-GB")}
                                 </TableCell>
                                 <TableCell className="text-right cursor-pointer">
-                                    <Popover>
+                                    <Popover className=''>
                                         <PopoverTrigger><MoreHorizontal /></PopoverTrigger>
-                                        <PopoverContent className="w-32">
+                                        <PopoverContent className="edit-pops ml-8 w-32">
                                         <div
                                             onClick={() => navigate(`/admin/jobs/${job._id}`)}
                                             className="flex items-center gap-2 w-fit cursor-pointer transition-transform transform hover:scale-110 active:scale-125"

@@ -17,6 +17,7 @@ import { JOB_API_END_POINT } from "@/utils/constant";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2 } from "lucide-react";
+import './PostJob.css';
 
 const companyArray = [];
 
@@ -91,12 +92,12 @@ const PostJob = () => {
       <Button
         onClick={() => navigate("/admin/jobs")}
         variant='outline'
-        className='bg-[#000000] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125 ml-[9rem] mt-[5rem]'
+        className='bg-[#000000] btn-post text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125 ml-[9rem] mt-[5rem]'
       >
         <ArrowLeft />
         <span>Back</span>
       </Button>
-      <div className='flex items-center justify-center w-screen my-5'>
+      <div className='post-main flex items-center justify-center w-screen my-5'>
         <form
           onSubmit={submitHandler}
           className='p-8 max-w-4xl border mt-[-4.6rem] border-gray-200 shadow-lg rounded-md'

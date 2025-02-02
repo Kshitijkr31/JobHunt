@@ -11,6 +11,8 @@ import { toast } from "sonner";
 import { Loader2Icon } from "lucide-react";
 import { useDispatch, useSelector} from 'react-redux'
 import {setLoading, setUser,} from '@/redux/authSlice'
+import './Login.css';
+
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -63,10 +65,10 @@ const Login = () => {
     <div>
       <Navbar />
 
-      <div className='flex items-center justify-center w-full mt-6 ml-[330px]'>
+      <div className='login-main flex items-center justify-center w-full mt-6 ml-[330px]'>
         <form
           onSubmit={submitHandler}
-          className='w-[620px] border border-gray-200 rounded-md p-4 my-10'
+          className=' login-form w-[620px] border border-gray-200 rounded-md p-4 my-10'
         >
           <h1 className='font-bold text-xl mb-5'>Login</h1>
           <div className='my-2'>
@@ -148,7 +150,7 @@ const Login = () => {
               <Button
                 type='submit'
                 variant='outline'
-                className='w-20 my-4 ml-[340px] bg-[#4040e8] hover:bg-[#62fffa] text-white outline-black'
+                className='submit-signup w-20 my-4 ml-[340px] bg-[#4040e8] hover:bg-[#62fffa] text-white outline-black'
               >
                 Sign Up
               </Button>

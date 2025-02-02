@@ -5,6 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Edit2, MoreHorizontal } from 'lucide-react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import './CompaniesTable.css';
 
 const CompaniesTable = () => {
     const { companies, searchCompanyByText } = useSelector(store => store.company);
@@ -22,8 +23,8 @@ const CompaniesTable = () => {
     },[companies,searchCompanyByText])
     return (
         <div>
-                <TableCaption className='w-[66rem] mt-4 mb-2'>A list of your recent registered companies</TableCaption>
-            <Table className="w-[73rem]">
+                <TableCaption className='tb-cap w-[66rem] mt-4 mb-2'>A list of your recent registered companies</TableCaption>
+            <Table className=" comp-main w-[73rem]">
                 <TableHeader>
                     <TableRow>
                         <TableHead>Logo</TableHead>
@@ -46,11 +47,11 @@ const CompaniesTable = () => {
                                 <TableCell>{new Date(company?.createdAt).toLocaleDateString("en-GB")}
                                 </TableCell>
                                 <TableCell className="text-right cursor-pointer">
-                                    <Popover>
+                                    <Popover className='edit-pop ml-8'>
                                         <PopoverTrigger><MoreHorizontal /></PopoverTrigger>
                                         <PopoverContent className="w-32">
                                         <div onClick={()=> navigate(`/admin/companies/${company._id}`)}
-                                             className='flex items-center gap-2 w-fit cursor-pointer transition-transform transform hover:scale-110 active:scale-125'>
+                                             className=' flex items-center gap-2 w-fit cursor-pointer transition-transform transform hover:scale-110 active:scale-125'>
                                                 <Edit2 className='w-4' />
                                                 <span>Edit</span>
                                             </div>

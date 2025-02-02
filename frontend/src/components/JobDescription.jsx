@@ -8,6 +8,7 @@ import { setSingleJob } from "@/redux/jobSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { ArrowLeft } from "lucide-react";
+import './JobDescription.css';
 
 const JobDescription = () => {
   const { singleJob } = useSelector((store) => store.job);
@@ -76,12 +77,24 @@ const JobDescription = () => {
       <Button
         onClick={() => navigate("/jobs")}
         variant='outline'
-        className='bg-[#000000] ml-[1rem] mt-[4px] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'>
+        className='btn bg-[#000000] ml-[1rem] mt-[4px] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'>
         <ArrowLeft />
         <span>Back</span>
       </Button>
-      <div className='w-[78rem] mx-auto my-10 ml-[9rem] mt-[16px] flex items-center justify-between'>
+      <div className='desc-main w-[78rem] mx-auto my-10 ml-[9rem] mt-[16px] flex items-center justify-between'>
         <div>
+        <Button
+          onClick={isApplied ? null : applyJobHandler}
+          disabled={isApplied}
+          className={`btn-app ml-[60rem] rounded-lg ${
+            isApplied
+              ? "bg-gray-600 cursor-not-allowed"
+              : "bg-[#7209b7] hover:bg-[#32ad9a]"
+          }`}
+        >
+          {isApplied ? "Already Applied" : "Apply Now"}
+          {/* Apply now */}
+        </Button>
           <h1 className='font-bold text-xl'>{singleJob?.title}</h1>
           <div className='flex items-center gap-2 mt-4'>
             <Badge className='text-[#1b02f8] font-bold' variant='ghost'>
@@ -95,24 +108,12 @@ const JobDescription = () => {
             </Badge>
           </div>
         </div>
-        <Button
-          onClick={isApplied ? null : applyJobHandler}
-          disabled={isApplied}
-          className={`rounded-lg ${
-            isApplied
-              ? "bg-gray-600 cursor-not-allowed"
-              : "bg-[#7209b7] hover:bg-[#32ad9a]"
-          }`}
-        >
-          {isApplied ? "Already Applied" : "Apply Now"}
-          {/* Apply now */}
-        </Button>
       </div>
-      <h1 className='border-b-2 border-b-gray-300 font-bold text-[20px] mt-[-3rem] ml-[9rem] py-4'>
+      <h1 className='jdh1 border-b-2 border-b-gray-300 font-bold text-[20px] mt-[-3rem] ml-[9rem] py-4'>
         Job Description
       </h1>
-      <div className='my-3 font-light w-[78rem] text-[5px] gap-2 ml-[9rem]'>
-        <h1 className='font-bold my-1'>
+      <div className='descrip my-3 font-light w-[78rem] text-[5px] gap-2 ml-[9rem]'>
+        <h1 className=' font-bold my-1'>
           Role:{" "}
           <span className='pl-4 font-normal text-gray-800'>
             {singleJob?.title}
@@ -143,9 +144,9 @@ const JobDescription = () => {
             ))}
           </span>
         </h1>
-        <h1 className='font-bold my-1'>
+        <h1 className='edu-qual font-bold my-1'>
           Preferred Qualifications:{" "}
-          <span className='pl-4 font-normal text-gray-800'>
+          <span className='  pl-4 font-normal text-gray-800'>
             {singleJob?.preferredQualifications?.map((qual, idx) => (
               <div key={idx}>
                 <h2 className='font-semibold'>{qual.category}</h2>

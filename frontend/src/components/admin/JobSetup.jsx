@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import useGetJobById from "@/hooks/useGetJobById";
+import './JobSetup.css';
 
 const JobSetup = () => {
   const params = useParams();
@@ -120,17 +121,17 @@ const JobSetup = () => {
   return (
     <div>
       <Navbar />
-      <div className='w-[45rem] mx-auto mt-[3rem]  ml-[23rem] '>
-        <form onSubmit={submitHandler}>
-          <div className='flex items-center gap-5 p-8'>
             <Button
               onClick={() => navigate("/admin/jobs")}
               variant='outline'
-              className='bg-[#000000] ml-[-142px] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
+              className='bg-[#000000] ml-5 mt-24 text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
             >
               <ArrowLeft />
               <span>Back</span>
             </Button>
+      <div className='setup-main w-[45rem] mx-auto mt-[-5rem]  ml-[23rem] '>
+        <form onSubmit={submitHandler}>
+          <div className='flex items-center gap-5 p-8'>
             <h1 className='font-bold text-xl'>Update Job</h1>
           </div>
 
@@ -226,7 +227,7 @@ const JobSetup = () => {
             ))}
           </div>
 
-          <div className='flex mt-4'>
+          <div className='flex mt-4 oth-det'>
             {/* Column 1 */}
             <div className='grid gap-2'>
               {["Education", "Skills"].map((category) => (

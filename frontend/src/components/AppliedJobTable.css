@@ -1,0 +1,70 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+ 
+ :root .applied-main{
+    margin-left: 0;
+        text-align: center;
+ }
+
+:root .table-main{
+    width: 38%;
+    margin-left: 34rem;
+        overflow-x: auto;
+}
+
+:root .head-main{
+    display: table-cell;
+    font-size: 12px;
+}
+
+
+:root .applied-right{
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.head-main th,
+.head-main td {
+    padding: 8px 10px; /* Reduce column padding */
+    text-align: left;
+}
+
+/* Reduce spacing between columns */
+.head-main th:first-child,
+.head-main td:first-child {
+    padding-left: 5px;
+}
+
+.head-main th:last-child,
+.head-main td:last-child {
+    padding-right: 5px;
+    text-align: center;
+    min-width: 80px; /* Reduce width for the status column */
+}
+
+/* Status Badge Adjustments */
+.applied-right .badge {
+    font-size: 10px; /* Reduce font size */
+    padding: 4px 6px; /* Smaller padding */
+    min-width: 60px; /* Minimum width for better fit */
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,6 +9,7 @@ import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { setUser } from "@/redux/authSlice";
 import { toast } from "sonner";
+import './Navbar.css';
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
@@ -30,18 +31,20 @@ const Navbar = () => {
     }
   };
   return (
-    <div className='bg-white'>
-      <div className='sm:fixed top-0 mx-auto h-16  w-full bg-white shadow-md py-5 flex items-center  px-10  z-50'>
+    <div className='bg-white '>
+      <div className='fixed navbar top-0 mx-auto h-16  w-full bg-white shadow-md py-5 flex items-center  px-10  z-50'  >
         <div>
-          <h1 className='text-2xl font-bold ml-20'>
+        
+          <h1  className=' heading-main text-2xl font-bold ml-20'>
             Job<span className='text-[#1b02f8]'>Hunt</span>
           </h1>
+          
         </div>
-        <div className='flex items-center gap-12 sm:gap-12 '>
-          <ul className='flex  items-center sm:gap-5   gap-4 font-bold '>
+        <div className='  flex items-center gap-12 sm:gap-12 '>
+          <ul className='flex main-gap  items-center sm:gap-5   gap-4 font-bold '>
             {user && user.role === "recruiter" ? (
               <>
-                <li className=' transition-transform transform hover:scale-110 active:scale-125 ml-[60rem]'>
+                <li className=' li-login transition-transform transform hover:scale-110 active:scale-125 ml-[60rem]'>
                   <Link to='/admin/companies' className='text-black font-bold hover:text-[#1b02f8] '>Companies</Link>
                 </li>
                 <li className=' transition-transform transform hover:scale-110 active:scale-125 '>
@@ -79,11 +82,11 @@ const Navbar = () => {
           </ul>
 
           {!user ? (
-            <div className='flex items-center gap-2'>
+            <div className=' flex items-center gap-2'>
               <Link to='/login'>
                 <Button
                   variant='outline'
-                  className='bg-[#f5f8f7] hover:bg-[#c2dfde] text-black border-black transition-transform transform hover:scale-110 active:scale-125'
+                  className='bg-[#f5f8f7] hover:bg-[#c2dfde] login-btn text-black border-black transition-transform transform hover:scale-110 active:scale-125'
                 >
                   Login
                 </Button>
@@ -91,23 +94,23 @@ const Navbar = () => {
               <Link to='/signup'>
                 <Button
                   variant='outline'
-                  className='bg-[#4b53c5] hover:bg-[#3edcca] text-white transition-transform transform hover:scale-110 active:scale-125'
+                  className='bg-[#4b53c5] hover:bg-[#3edcca] signup-btn text-white transition-transform transform hover:scale-110 active:scale-125'
                 >
                   Signup
                 </Button>
               </Link>
             </div>
           ) : (
-            <Popover>
+            <Popover >
               <PopoverTrigger asChild>
-                <Avatar className='cursor-pointer transition-transform transform hover:scale-110 active:scale-125'>
+                <Avatar className='photo-main cursor-pointer transition-transform transform hover:scale-110 active:scale-125'>
                   <AvatarImage
                     src={user?.profile?.profilePhoto}
                     alt='@shadcn'
                   />
                 </Avatar>
               </PopoverTrigger>
-              <PopoverContent className='w-80 font-normal h-30 my-2 '>
+              <PopoverContent className='small-pop w-80 font-normal h-30 my-2 '>
                 <div className=''>
                   <Avatar className='cursor-pointer'>
                     <AvatarImage

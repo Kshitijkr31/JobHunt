@@ -10,6 +10,7 @@ import {
 } from './ui/table';
 import { Badge } from './ui/badge';
 import { useSelector } from 'react-redux';
+import './AppliedJobTable.css';
 
 const AppliedJobTable = () => {
     const { allAppliedJobs = [] } = useSelector((store) => store.job);
@@ -20,15 +21,15 @@ const AppliedJobTable = () => {
     }
 
     return (
-        <div>
-            <TableCaption className="w-[66rem] ml-[-7rem] mt-[-2.5rem]">A list of your applied jobs</TableCaption>
-            <Table>
+        <div className='table-main'>
+            <TableCaption className=" applied-main w-[66rem] ml-[-7rem] mt-[-2.5rem]">A list of your applied jobs</TableCaption>
+            <Table className='head-main' >
                 <TableHeader>
                     <TableRow>
                         <TableHead>Date</TableHead>
                         <TableHead>Job Role</TableHead>
                         <TableHead>Company</TableHead>
-                        <TableHead className="text-right">Status</TableHead>
+                        <TableHead className="text-right ">Status</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -43,7 +44,7 @@ const AppliedJobTable = () => {
                                 </TableCell>
                                 <TableCell>{appliedJob.job.title}</TableCell>
                                 <TableCell>{appliedJob.job.company.name}</TableCell>
-                                <TableCell className="text-right">
+                                <TableCell className="text-right applied-right">
                                     <Badge
                                         className={`${
                                             appliedJob?.status === 'rejected'
@@ -51,7 +52,7 @@ const AppliedJobTable = () => {
                                                 : appliedJob.status === 'pending'
                                                 ? 'bg-gray-400'
                                                 : 'bg-green-400'
-                                        }`}
+                                        }`} 
                                     >
                                         {appliedJob.status.toUpperCase()}
                                     </Badge>

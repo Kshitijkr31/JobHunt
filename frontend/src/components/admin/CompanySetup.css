@@ -1,0 +1,22 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+    
+  
+
+    :root .setup-main{
+        margin-top: 0rem;
+        width: 19rem;
+        margin-left: 2rem;
+    }
+     .btn-bck{
+        margin-top: rem;
+        margin-left: -10rem;
+     }
+    
+     .setup-main .up-com{
+        margin-left: -3rem;
+    }
+    
+    
+    
+}

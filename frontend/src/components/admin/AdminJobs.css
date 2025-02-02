@@ -1,0 +1,20 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+    
+    :root .comp-job-create{
+margin-top: 7rem;
+margin-left: 1rem;
+    }
+  
+    .comp-job-create .btn{
+        font-size: 11px;
+        width: 6rem;
+        margin-top: 0rem;
+        margin-left: 0rem;
+    }
+
+
+
+
+}
+     

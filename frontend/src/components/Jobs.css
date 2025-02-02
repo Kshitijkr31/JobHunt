@@ -1,0 +1,43 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+ 
+:root .filter-container{
+    margin-top: 9rem;
+        margin-left: 0rem;
+        width: 25rem;
+}
+
+.job-fl{
+    position: relative;
+}
+
+
+:root .flexbox-main{
+    display: flex;
+            margin-top: 5rem;
+            margin-left: -4rem;
+            flex-direction: column;
+}
+
+
+.flexbox-main .flex-main2{
+    display: block;
+    width: 351px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+             

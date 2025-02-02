@@ -1,0 +1,23 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+    
+  
+
+:root .comp-create{
+    margin-top: -5rem;
+    margin-left: 3rem;
+    width: 16rem;
+}
+.comp-create input{
+   width: 15rem;
+}
+
+
+
+
+
+
+
+
+}
+     

@@ -5,7 +5,7 @@ import { RadioGroup, RadioGroupItem} from './ui/radio-group'
 import { Label } from './ui/label'
 import { useDispatch } from 'react-redux'
 import { setSearchedQuery } from '@/redux/jobSlice'
-
+import './FilterCard.css';
 const filterData = [
     {
         filterType: "Location",
@@ -39,7 +39,7 @@ const FilterCard = () => {
     }, [selectedValue, dispatch]);
 
     return (
-        <div className='w-[80%] bg-white p-3 rounded-md ml-[5rem] mt-20'>
+        <div className='filter-main w-[80%] bg-white p-3 rounded-md ml-[5rem] mt-20'>
              { <h1 className='font-bold text-lg'>Filter Jobs</h1> }
             <hr className='mt-3' />
             <RadioGroup value={selectedValue} onValueChange={changeHandler}>

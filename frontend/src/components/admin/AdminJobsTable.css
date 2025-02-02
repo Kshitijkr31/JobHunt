@@ -1,0 +1,21 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+
+    
+    .admin-tb-cap{
+        margin-top: 0rem;
+        margin-left: -24rem;
+    }
+
+    :root .admin-main{
+        display: block;
+        width: 22rem;
+        font-size: 8px;
+      }
+    :root .edit-pops{
+        margin-left: -4rem;
+    }
+
+
+}
+     

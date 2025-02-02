@@ -1,0 +1,16 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+ 
+:root .browse-main{
+    margin-top: -6rem;
+    width: 22rem;
+}
+    
+.browse-main .browse-next{
+        display: block;
+        width: 20rem;
+        margin-top: 2rem;
+    }
+    
+    }
+     

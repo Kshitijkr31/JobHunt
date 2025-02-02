@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import AdminJobsTable from './AdminJobsTable'
 import useGetAllAdminJobs from '@/hooks/useGetAllAdminJobs'
 import { setSearchJobByText } from '@/redux/jobSlice'
-
+import './AdminJobs.css';
 const AdminJobs = () => {
     useGetAllAdminJobs();
     const [input, setInput] = useState("");
@@ -21,7 +21,7 @@ const AdminJobs = () => {
     return (
         <div>
             <Navbar />
-            <div className='w-full mx-auto my-5 ml-[10rem]'>
+            <div className='comp-job-create w-full mx-auto my-5 ml-[10rem]'>
                 <div className='flex items-center  my-5 mt-[6rem] '>
                     <Input
                         className="w-fit "
@@ -31,7 +31,7 @@ const AdminJobs = () => {
                     <Button 
                     onClick={() => navigate("/admin/jobs/create")}
                     variant='outline'
-                    className='bg-[#4b53c5] hover:bg-[#3edcca] ml-[52rem] text-white transition-transform transform hover:scale-110 active:scale-125'
+                    className='bg-[#4b53c5] btn hover:bg-[#3edcca] ml-[52rem] text-white transition-transform transform hover:scale-110 active:scale-125'
                  >New Jobs</Button>
                 </div>
                 <AdminJobsTable/>

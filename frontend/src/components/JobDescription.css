@@ -1,0 +1,48 @@
+/* Styles for tablets and below */
+@media (max-width: 768px) {
+ 
+:root .jdh1{
+        margin-left: 2rem;
+        margin-top: -30px;
+        border: none;
+}
+
+.btn{
+        margin-left: 3rem;
+        margin-top: 2rem;
+}
+
+
+:root .desc-main{
+        margin-left: 2rem;
+        width: 30rem;
+}
+
+:root .btn-app{
+        margin-left: 10rem;
+}
+
+:root .descrip{
+        width: 20rem;
+        margin-left: 2rem;
+    
+}
+
+.descrip h1{
+margin-top: 18px;
+}
+
+
+.edu-qual ul{
+        margin-top: 12px;
+}
+.edu-qual div{
+        margin-top: 10px;
+}
+.edu-qual li{
+        margin-top: 3px;
+}
+
+
+}
+         

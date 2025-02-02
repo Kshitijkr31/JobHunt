@@ -15,6 +15,7 @@ import axios from 'axios';
 import { USER_API_END_POINT } from '@/utils/constant';
 import { setUser } from '@/redux/authSlice';
 import { toast } from 'sonner';
+import './UpdateProfileDialog.css';
 
 const UpdateProfileDialog = ({ open, setOpen }) => {
   const [loading, setLoading] = useState(false);
@@ -89,7 +90,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             <DialogTitle>Update Profile</DialogTitle>
           </DialogHeader>
           <form onSubmit={submitHandler}>
-            <div className="grid gap-4 py-4">
+            <div className="main-field grid gap-4 py-4 ">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="fullname" className="text-right">
                   Name
@@ -103,7 +104,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                   className="col-span-3"
                 />
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
+              <div className="grid  grid-cols-4 items-center gap-4">
                 <Label htmlFor="email" className="text-right">
                   Email
                 </Label>
@@ -113,7 +114,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                   type="email"
                   value={input.email}
                   onChange={changeEventHandler}
-                  className="col-span-3"
+                  className="  col-span-3"
                 />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
