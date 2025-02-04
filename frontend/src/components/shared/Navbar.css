@@ -28,11 +28,12 @@
 
   .login-btn {
     height: 2rem;
-    margin-left: -1.5rem;
+    margin-left: -5.5rem;
     width: 3rem;
   }
   .signup-btn {
     height: 2rem;
     width: 3.5rem;
+    margin-left: -2.5rem;
   }
 }
