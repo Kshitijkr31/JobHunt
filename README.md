@@ -2,6 +2,8 @@
 
 JobHunt is a secure and decentralized job portal platform designed to connect students and recruiters seamlessly. Built with the MERN stack, the application integrates blockchain technology for secure login and signup processes, providing users with a reliable and feature-rich experience.
 
+**Live Demo** - Click here[https://jobhunt-s3b6.onrender.com]
+
 **Key Features**
 
 Blockchain Integration: Decentralized authentication using blockchain technology.
