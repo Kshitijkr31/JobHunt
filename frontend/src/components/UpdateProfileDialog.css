@@ -1,32 +1,220 @@
-/* Styles for tablets and below */
-@media (max-width: 750px) {
- 
+/* =========================================================
+   PROFILE UPDATE DIALOG
+========================================================= */
 
-:root input{
-font-size: 15px;
+.profile-dialog {
+  width: 100%;
+  max-width: 560px !important;
+
+  max-height: calc(100vh - 100px) !important;
+  overflow-y: auto;
+
+  margin-top: 50px;
+
+  border-radius: 18px;
+}
+
+.profile-dialog form {
+  overflow: visible;
+}
+
+.profile-form {
+  padding-bottom: 10px;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.dialog-title-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dialog-title-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  color: #4f46e5;
+  background: #eef2ff;
+}
+
+.dialog-title-area h2 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.dialog-title-area p {
+  margin-top: 3px;
+
+  color: #94a3b8;
+
+  font-size: 12px;
 }
 
 
+/* =========================================================
+   FORM
+========================================================= */
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+
+  padding: 24px 0 8px;
+}
+
+.profile-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.profile-form-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.profile-form-group input {
+  height: 44px;
+
+  border-radius: 10px;
+
+  border: 1px solid #dbe1ea;
+
+  background: #ffffff;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+}
+
+.profile-form-group input:focus {
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.profile-form-group textarea {
+  width: 100%;
+
+  resize: vertical;
+
+  min-height: 90px;
+
+  padding: 11px 13px;
+
+  border-radius: 10px;
+
+  border: 1px solid #dbe1ea;
+
+  outline: none;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+}
+
+.profile-form-group textarea:focus {
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.field-hint {
+  color: #94a3b8;
+
+  font-size: 11px;
+}
 
 
+/* =========================================================
+   RESUME
+========================================================= */
+
+.resume-upload {
+  padding: 4px;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+}
 
 
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.profile-dialog-footer {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.cancel-profile-btn {
+  flex: 1;
+
+  height: 44px !important;
+
+  border-radius: 10px !important;
+}
+
+.update-profile-btn {
+  flex: 1;
+
+  height: 44px !important;
+
+  border-radius: 10px !important;
+
+  background: #4f46e5 !important;
+
+  color: white !important;
+
+  font-weight: 700 !important;
+}
+
+.update-profile-btn:hover {
+  background: #4338ca !important;
+}
 
 
+/* =========================================================
+   MOBILE
+========================================================= */
 
+@media (max-width: 600px) {
 
+  .profile-dialog {
+    padding: 20px !important;
+  }
 
+  .profile-dialog-footer {
+    flex-direction: column-reverse;
+  }
 
-
-
-
-
-
-
-
-
-
-
+  .cancel-profile-btn,
+  .update-profile-btn {
+    width: 100%;
+  }
 
 }
- 

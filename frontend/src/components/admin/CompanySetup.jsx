@@ -1,26 +1,31 @@
-import React, {
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
+
 import Navbar from "../shared/Navbar";
+
 import { Button } from "../ui/button";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, Building2, Globe, MapPin } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+
 import axios from "axios";
+
 import { COMPANY_API_END_POINT } from "@/utils/constant";
-import {
-  useNavigate,
-   useParams
-} from "react-router-dom";
+
+import { useNavigate, useParams } from "react-router-dom";
+
 import { toast } from "sonner";
-import { useSelector } from 'react-redux'
-import useGetCompanyById from '@/hooks/useGetCompanyById'
-import './CompanySetup.css';
+
+import { useSelector } from "react-redux";
+
+import useGetCompanyById from "@/hooks/useGetCompanyById";
+
+import "./CompanySetup.css";
 
 const CompanySetup = () => {
   const params = useParams();
+
   useGetCompanyById(params.id);
+
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -28,32 +33,64 @@ const CompanySetup = () => {
     location: "",
     file: null,
   });
-  const {singleCompany} = useSelector(store=>store.company);
+
+  const { singleCompany } = useSelector((store) => store.company);
+
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
+  /*
+   * =========================================
+   * INPUT CHANGE
+   * =========================================
+   */
+
   const changeEventHandler = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
   };
+
+  /*
+   * =========================================
+   * FILE CHANGE
+   * =========================================
+   */
 
   const changeFileHandler = (e) => {
     const file = e.target.files?.[0];
-    setInput({ ...input, file });
+
+    setInput({
+      ...input,
+      file,
+    });
   };
+
+  /*
+   * =========================================
+   * UPDATE COMPANY
+   * =========================================
+   */
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
+
     formData.append("name", input.name);
     formData.append("description", input.description);
     formData.append("website", input.website);
     formData.append("location", input.location);
+
     if (input.file) {
       formData.append("file", input.file);
     }
+
     try {
       setLoading(true);
+
       const res = await axios.put(
         `${COMPANY_API_END_POINT}/update/${params.id}`,
         formData,
@@ -61,117 +98,238 @@ const CompanySetup = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+
           withCredentials: true,
         }
       );
+
       if (res.data.success) {
         toast.success(res.data.message);
+
         navigate("/admin/companies");
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+
+      toast.error(
+        error?.response?.data?.message ||
+          "Something went wrong while updating the company."
+      );
     } finally {
       setLoading(false);
     }
   };
 
+  /*
+   * =========================================
+   * LOAD COMPANY DATA
+   * =========================================
+   */
+
   useEffect(() => {
-      setInput({
-          name: singleCompany.name || "",
-          description: singleCompany.description || "",
-          website: singleCompany.website || "",
-          location: singleCompany.location || "",
-          file: singleCompany.file || null
-      })
-  },[singleCompany]);
+    if (!singleCompany) return;
+
+    setInput({
+      name: singleCompany.name || "",
+      description: singleCompany.description || "",
+      website: singleCompany.website || "",
+      location: singleCompany.location || "",
+      file: null,
+    });
+  }, [singleCompany]);
 
   return (
-    <div>
+    <div className='company-setup-page'>
       <Navbar />
-            <Button
-              onClick={() => navigate("/admin/companies")}
-              variant='outline'
-              className='bg-[#000000] btn-bck ml-24 mt-[-4rem] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
-            >
-              <ArrowLeft />
-              <span>Back</span>
-            </Button>
-      <div className='setup-main w-[45rem]  mx-auto my-10 ml-[25rem] mt-[-8rem]'>
-        <form onSubmit={submitHandler}>
-          <div className='flex items-center gap-5 p-8'>
-            <h1 className='font-bold text-xl'>Update Company</h1>
+
+      <main className='company-setup-container'>
+        {/* =====================================
+            BACK BUTTON
+        ====================================== */}
+
+        <button
+          type='button'
+          className='company-back-button'
+          onClick={() => navigate("/admin/companies")}
+        >
+          <ArrowLeft size={18} />
+          Back to Companies
+        </button>
+
+        {/* =====================================
+            PAGE HEADER
+        ====================================== */}
+
+        <div className='company-setup-header'>
+          <div className='company-setup-icon'>
+            <Building2 size={26} />
           </div>
-          <div className='grid grid-cols-2 gap-4 '>
-            <div>
-              <Label className='font-bold'>Company Name</Label>
-              <Input
-                type='text'
-                name='name'
-                value={input.name}
-                placeholder='Google, Microsoft etc.'
-                onChange={changeEventHandler}
-              />
-            </div>
-            <div>
-              <Label className='font-bold'>Description</Label>
-              <Input
-                type='text'
-                name='description'
-                value={input.description}
-                placeholder='Description'
-                onChange={changeEventHandler}
-              />
-            </div>
-            <div>
-              <Label className='font-bold'>Website</Label>
-              <Input
-                type='text'
-                name='website'
-                value={input.website}
-                placeholder='https://abc.com'
-                onChange={changeEventHandler}
-              />
-            </div>
-            <div>
-              <Label className='font-bold'>Location</Label>
-              <Input
-                type='text'
-                name='location'
-                value={input.location}
-                placeholder='India, USA etc.'
-                onChange={changeEventHandler}
-              />
-            </div>
+
+          <div>
+            <h1>Update Company</h1>
+
+            <p>Update your company information and profile details.</p>
           </div>
-          <div className='flex  mt-[1rem] items-center'>
-            <Label className='font-bold'>Logo</Label>
-            <Input
-              type='file'
-              accept='image/*'
-              className='ml-[21rem] w-[22rem] up-com'
-              onChange={changeFileHandler}
-            />
-          </div>
-          {loading ? (
-            <Button className='w-full my-4'>
-              {" "}
-              <Loader2 className='mr-2 h-4 w-4 animate-spin bg-[#000000] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125' />{" "}
-              Please wait{" "}
-            </Button>
-          ) : (
-            <Button
-              type='submit'
-              className='w-full my-4 bg-[#000000] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
-            >
-              Update
-            </Button>
-          )}
-        </form>
-      </div>
+        </div>
+
+        {/* =====================================
+            FORM CARD
+        ====================================== */}
+
+        <div className='company-setup-card'>
+          <form onSubmit={submitHandler}>
+            {/* =================================
+                COMPANY INFORMATION
+            ================================== */}
+
+            <div className='setup-section'>
+              <div className='setup-section-heading'>
+                <h2>Company Information</h2>
+
+                <p>Keep your company details accurate and up to date.</p>
+              </div>
+
+              <div className='setup-form-grid'>
+                {/* COMPANY NAME */}
+
+                <div className='setup-field'>
+                  <Label>Company Name</Label>
+
+                  <div className='setup-input-wrapper'>
+                    <Building2 size={17} className='setup-input-icon' />
+
+                    <Input
+                      type='text'
+                      name='name'
+                      value={input.name}
+                      placeholder='Google, Microsoft, Paytm...'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+                </div>
+
+                {/* LOCATION */}
+
+                <div className='setup-field'>
+                  <Label>Location</Label>
+
+                  <div className='setup-input-wrapper'>
+                    <MapPin size={17} className='setup-input-icon' />
+
+                    <Input
+                      type='text'
+                      name='location'
+                      value={input.location}
+                      placeholder='Hyderabad, India'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+                </div>
+
+                {/* WEBSITE */}
+
+                <div className='setup-field'>
+                  <Label>Website</Label>
+
+                  <div className='setup-input-wrapper'>
+                    <Globe size={17} className='setup-input-icon' />
+
+                    <Input
+                      type='text'
+                      name='website'
+                      value={input.website}
+                      placeholder='https://company.com'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+                </div>
+
+                {/* DESCRIPTION */}
+
+                <div className='setup-field setup-description-field'>
+                  <Label>Description</Label>
+
+                  <textarea
+                    name='description'
+                    value={input.description}
+                    placeholder='Tell candidates about your company...'
+                    onChange={changeEventHandler}
+                    className='company-description-input'
+                    rows={4}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* =================================
+                COMPANY LOGO
+            ================================== */}
+
+            <div className='setup-section logo-section'>
+              <div className='setup-section-heading'>
+                <h2>Company Logo</h2>
+
+                <p>Upload a new logo to represent your company.</p>
+              </div>
+
+              <div className='logo-upload-area'>
+                {/* CURRENT LOGO */}
+
+                {singleCompany?.logo && (
+                  <div className='current-company-logo'>
+                    <img src={singleCompany.logo} alt='Current company logo' />
+                  </div>
+                )}
+
+                <div className='logo-upload-content'>
+                  <Label className='logo-label'>Upload Logo</Label>
+
+                  <Input
+                    type='file'
+                    accept='image/*'
+                    onChange={changeFileHandler}
+                    className='company-file-input'
+                  />
+
+                  <p>PNG, JPG or JPEG • Recommended size 300 × 300px</p>
+                </div>
+              </div>
+            </div>
+
+            {/* =================================
+                ACTIONS
+            ================================== */}
+
+            <div className='company-setup-actions'>
+              <Button
+                type='button'
+                variant='outline'
+                className='cancel-company-button'
+                onClick={() => navigate("/admin/companies")}
+              >
+                Cancel
+              </Button>
+
+              {loading ? (
+                <Button
+                  type='button'
+                  disabled
+                  className='update-company-button'
+                >
+                  <Loader2 className='update-loader' size={18} />
+                  Updating...
+                </Button>
+              ) : (
+                <Button type='submit' className='update-company-button'>
+                  Update Company
+                </Button>
+              )}
+            </div>
+          </form>
+        </div>
+      </main>
     </div>
   );
 };
 
 export default CompanySetup;
-

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../shared/Navbar";
 import { Button } from "../ui/button";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, BriefcaseBusiness } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import axios from "axios";
@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import useGetJobById from "@/hooks/useGetJobById";
-import './JobSetup.css';
+import "./JobSetup.css";
 
 const JobSetup = () => {
   const params = useParams();
@@ -65,7 +65,7 @@ const JobSetup = () => {
 
     const formData = new FormData();
     formData.append("title", input.title);
-    formData.append("description", input.description.join(", "));
+    formData.append("description", input.description);
     formData.append("location", input.location);
     formData.append("salary", input.salary);
     formData.append("jobType", input.jobType);
@@ -101,7 +101,9 @@ const JobSetup = () => {
     if (singleJob) {
       setInput({
         title: singleJob.title || "",
-        description: singleJob.description.join("\n") || "",
+        description: Array.isArray(singleJob.description)
+          ? singleJob.description.join("\n")
+          : singleJob.description || "",
         location: singleJob.location || "",
         salary: singleJob.salary || "",
         jobType: singleJob.jobType || "",
@@ -117,164 +119,234 @@ const JobSetup = () => {
       });
     }
   }, [singleJob]);
-
+//  text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125
   return (
     <div>
       <Navbar />
-            <Button
-              onClick={() => navigate("/admin/jobs")}
-              variant='outline'
-              className='bg-[#000000] ml-5 mt-24 text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
-            >
-              <ArrowLeft />
-              <span>Back</span>
-            </Button>
-      <div className='setup-main w-[45rem] mx-auto mt-[-5rem]  ml-[23rem] '>
-        <form onSubmit={submitHandler}>
-          <div className='flex items-center gap-5 p-8'>
-            <h1 className='font-bold text-xl'>Update Job</h1>
-          </div>
+      
+      <div className='job-setup-page'>
+        <Button
+          onClick={() => navigate("/admin/jobs")}
+          variant='outline'
+          className='job-back-btn'
+        >
+          <ArrowLeft size={18} />
+          <span>Back</span>
+        </Button>
 
-          {/* General Fields */}
-          <div className='grid grid-cols-2 gap-4'>
-            <div>
-              <Label className='font-bold'>Job Title</Label>
-              <Input
-                type='text'
-                name='title'
-                value={input.title}
-                placeholder='Software Engineer, Manager etc.'
-                onChange={changeEventHandler}
-              />
-            </div>
-            <div>
-              <Label className='font-bold'>Location</Label>
-              <Input
-                type='text'
-                name='location'
-                value={input.location}
-                placeholder='City, Country'
-                onChange={changeEventHandler}
-              />
-            </div>
-            <div>
-              <Label className='font-bold'>Salary</Label>
-              <Input
-                type='text'
-                name='salary'
-                value={input.salary}
-                placeholder='e.g., 50000 per annum'
-                onChange={changeEventHandler}
-              />
-            </div>
-            <div>
-              <Label className='font-bold'>Job Type</Label>
-              <Input
-                type='text'
-                name='jobType'
-                value={input.jobType}
-                placeholder='Full-time, Permanent'
-                onChange={changeEventHandler}
-              />
-            </div>
-            <div>
-              <Label className='font-bold'>Experience</Label>
-              <Input
-                type='text'
-                name='experience'
-                value={input.experience}
-                placeholder='e.g., 5-7 years'
-                onChange={changeEventHandler}
-              />
-            </div>
-            <div>
-              <Label className='font-bold'>Position</Label>
-              <Input
-                type='number'
-                name='position'
-                value={input.position}
-                placeholder='Position count'
-                onChange={changeEventHandler}
-              />
-            </div>
-          </div>
+        <div className='job-setup-container'>
+          <div className='job-setup-card'>
+            {/* Header */}
+            <div className='job-setup-header'>
+              <div className='job-header-content'>
+                <div className='job-header-icon'>
+                  <BriefcaseBusiness size={22} />
+                </div>
 
-          {/* Description */}
-          <div className='flex items-center mt-[1rem]'>
-            <Label className='font-bold'>Description</Label>
-            <Input
-              type='text'
-              name='description'
-              value={input.description}
-              placeholder='Job description'
-              onChange={handleDescriptionChange}
-              className='ml-[5rem]'
-            />
-          </div>
+                <div>
+                  <h1>Update Job</h1>
+                  <p>Edit job details, requirements and qualifications</p>
+                </div>
+              </div>
+            </div>
 
-          {/* Requirements */}
-          <div className='flex mt-4'>
-            <Label className='font-bold'>Requirements</Label>
-            {input.requirements.map((requirement, index) => (
-              <Input
-                key={index}
-                type='text'
-                value={requirement}
-                placeholder={`Requirement ${index + 1}`}
-                onChange={(e) => handleRequirementsChange(e, index)}
-                className='ml-[1rem]'
-              />
-            ))}
-          </div>
+            {/* Form */}
+            <form onSubmit={submitHandler} className='job-setup-form'>
+              {/* ================= GENERAL INFORMATION ================= */}
 
-          <div className='flex mt-4 oth-det'>
-            {/* Column 1 */}
-            <div className='grid gap-2'>
-              {["Education", "Skills"].map((category) => (
-                <div key={category} className='mt-2'>
-                  <Label className='font-bold'>{category}</Label>
+              <div className='form-section'>
+                <div className='form-section-title'>Job Information</div>
+
+                <div className='job-form-grid'>
+                  <div className='job-form-field'>
+                    <Label>Job Title</Label>
+
+                    <Input
+                      type='text'
+                      name='title'
+                      value={input.title}
+                      placeholder='Software Engineer, Manager etc.'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+
+                  <div className='job-form-field'>
+                    <Label>Location</Label>
+
+                    <Input
+                      type='text'
+                      name='location'
+                      value={input.location}
+                      placeholder='City, Country'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+
+                  <div className='job-form-field'>
+                    <Label>Salary</Label>
+
+                    <Input
+                      type='text'
+                      name='salary'
+                      value={input.salary}
+                      placeholder='e.g. 50000 per annum'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+
+                  <div className='job-form-field'>
+                    <Label>Job Type</Label>
+
+                    <Input
+                      type='text'
+                      name='jobType'
+                      value={input.jobType}
+                      placeholder='Full-time, Permanent'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+
+                  <div className='job-form-field'>
+                    <Label>Experience</Label>
+
+                    <Input
+                      type='text'
+                      name='experience'
+                      value={input.experience}
+                      placeholder='e.g. 5-7 years'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+
+                  <div className='job-form-field'>
+                    <Label>Position</Label>
+
+                    <Input
+                      type='number'
+                      name='position'
+                      value={input.position}
+                      placeholder='Position count'
+                      onChange={changeEventHandler}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* ================= DESCRIPTION ================= */}
+
+              <div className='form-section'>
+                <div className='form-section-title'>Job Description</div>
+
+                <div className='job-description-field'>
+                  <Label>Description</Label>
+
                   <Input
                     type='text'
-                    value={input.preferredQualifications[category]}
-                    onChange={(e) => handleQualificationChange(category, e)}
-                    placeholder={`Preferred ${category}`}
-                    className='w-[20rem]'
+                    name='description'
+                    value={input.description}
+                    placeholder='Describe the role and responsibilities'
+                    onChange={handleDescriptionChange}
                   />
                 </div>
-              ))}
-            </div>
-            {/* Column 2 */}
-            <div className='grid gap-2 ml-4'>
-              {["Experience", "Other Skills"].map((category) => (
-                <div key={category} className='mt-2'>
-                  <Label className='font-bold'>{category}</Label>
-                  <Input
-                    type='text'
-                    value={input.preferredQualifications[category]}
-                    onChange={(e) => handleQualificationChange(category, e)}
-                    placeholder={`Preferred ${category}`}
-                    className='w-[20rem]'
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Submit Button */}
-          {loading ? (
-            <Button className='w-full my-4'>
-              <Loader2 className='mr-2 h-4 w-4 animate-spin bg-[#000000] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125' />
-              Please wait
-            </Button>
-          ) : (
-            <Button
-              type='submit'
-              className='w-full my-4 bg-[#000000] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
-            >
-              Update
-            </Button>
-          )}
-        </form>
+              {/* ================= REQUIREMENTS ================= */}
+
+              <div className='form-section'>
+                <div className='form-section-title'>Requirements</div>
+
+                <div className='job-requirements'>
+                  <Label>Required Skills & Requirements</Label>
+
+                  <div className='requirement-inputs'>
+                    {input.requirements.map((requirement, index) => (
+                      <Input
+                        key={index}
+                        type='text'
+                        value={requirement}
+                        placeholder={`Requirement ${index + 1}`}
+                        onChange={(e) => handleRequirementsChange(e, index)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* ================= QUALIFICATIONS ================= */}
+
+              <div className='form-section'>
+                <div className='form-section-title'>
+                  Preferred Qualifications
+                </div>
+
+                <div className='qualifications-grid'>
+                  <div className='job-form-field'>
+                    <Label>Education</Label>
+
+                    <Input
+                      type='text'
+                      value={input.preferredQualifications.Education}
+                      onChange={(e) =>
+                        handleQualificationChange("Education", e)
+                      }
+                      placeholder='Preferred Education'
+                    />
+                  </div>
+
+                  <div className='job-form-field'>
+                    <Label>Experience</Label>
+
+                    <Input
+                      type='text'
+                      value={input.preferredQualifications.Experience}
+                      onChange={(e) =>
+                        handleQualificationChange("Experience", e)
+                      }
+                      placeholder='Preferred Experience'
+                    />
+                  </div>
+
+                  <div className='job-form-field'>
+                    <Label>Skills</Label>
+
+                    <Input
+                      type='text'
+                      value={input.preferredQualifications.Skills}
+                      onChange={(e) => handleQualificationChange("Skills", e)}
+                      placeholder='Preferred Skills'
+                    />
+                  </div>
+
+                  <div className='job-form-field'>
+                    <Label>Other Skills</Label>
+
+                    <Input
+                      type='text'
+                      value={input.preferredQualifications.OtherSkills}
+                      onChange={(e) =>
+                        handleQualificationChange("OtherSkills", e)
+                      }
+                      placeholder='Preferred Other Skills'
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* ================= UPDATE ================= */}
+
+              {loading ? (
+                <Button className='job-update-btn'>
+                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                  Please wait
+                </Button>
+              ) : (
+                <Button type='submit' className='job-update-btn'>
+                  Update Job
+                </Button>
+              )}
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,74 +1,165 @@
-import React, { useEffect, useState } from 'react'
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
-import { Avatar, AvatarImage } from '../ui/avatar'
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { Edit2, Eye, MoreHorizontal } from 'lucide-react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import './AdminJobsTable.css';
-const AdminJobsTable = () => { 
-    const {allAdminJobs, searchJobByText} = useSelector(store=>store.job);
+import React, { useEffect, useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../ui/popover";
+import {
+  Edit2,
+  Eye,
+  MoreHorizontal,
+  BriefcaseBusiness,
+} from "lucide-react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "./AdminJobsTable.css";
 
-    const [filterJobs, setFilterJobs] = useState(allAdminJobs);
-    const navigate = useNavigate();
+const AdminJobsTable = () => {
+  const { allAdminJobs, searchJobByText } = useSelector(
+    (store) => store.job
+  );
 
-    useEffect(()=>{ 
-        console.log('called');
-        const filteredJobs = allAdminJobs.filter((job)=>{
-            if(!searchJobByText){
-                return true;
-            };
-            return job?.title?.toLowerCase().includes(searchJobByText.toLowerCase()) || job?.company?.name.toLowerCase().includes(searchJobByText.toLowerCase());
+  const [filterJobs, setFilterJobs] = useState(allAdminJobs);
+  const navigate = useNavigate();
 
-        });
-        setFilterJobs(filteredJobs);
-    },[allAdminJobs,searchJobByText])
-    return (
-        <div className='ajt'>
-                <TableCaption className='admin-tb-cap w-[66rem] mt-4 mb-2'>A list of your recent  posted jobs</TableCaption>
-            <Table className="admin-main w-[72rem]">
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Company Name</TableHead>
-                        <TableHead>Role</TableHead>
-                        <TableHead>Date</TableHead>
-                        <TableHead className="text-right">Action</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {
-                        filterJobs?.map((job) => (
-                            <tr>
-                                <TableCell>{job?.company?.name}</TableCell>
-                                <TableCell>{job?.title}</TableCell>
-                                <TableCell>{new Date(job?.createdAt).toLocaleDateString("en-GB")}
-                                </TableCell>
-                                <TableCell className="text-right cursor-pointer">
-                                    <Popover className=''>
-                                        <PopoverTrigger><MoreHorizontal /></PopoverTrigger>
-                                        <PopoverContent className="edit-pops ml-8 w-32">
-                                        <div
-                                            onClick={() => navigate(`/admin/jobs/${job._id}`)}
-                                            className="flex items-center gap-2 w-fit cursor-pointer transition-transform transform hover:scale-110 active:scale-125"
-                                            >
-                                            <Edit2 className="w-4" />
-                                            <span>Edit</span>
-                                            </div>
-                                            <div onClick={()=> navigate(`/admin/jobs/${job._id}/applicants`)} className='flex items-center w-fit gap-2 cursor-pointer mt-2 transition-transform transform hover:scale-110 active:scale-125'>
-                                                <Eye className='w-4'/>
-                                                <span>Applicants</span>
-                                            </div>
-                                        </PopoverContent>
-                                    </Popover>
-                                </TableCell>
-                            </tr>
+  useEffect(() => {
+    console.log("called");
 
-                        ))
-                    }
-                </TableBody>
-            </Table>
+    const filteredJobs = allAdminJobs.filter((job) => {
+      if (!searchJobByText) {
+        return true;
+      }
+
+      return (
+        job?.title
+          ?.toLowerCase()
+          .includes(searchJobByText.toLowerCase()) ||
+        job?.company?.name
+          ?.toLowerCase()
+          .includes(searchJobByText.toLowerCase())
+      );
+    });
+
+    setFilterJobs(filteredJobs);
+  }, [allAdminJobs, searchJobByText]);
+
+  return (
+    <div className="ajt">
+      <div className="jobs-table-wrapper">
+
+        <div className="jobs-table-header">
+
+          <div className="jobs-count">
+            {filterJobs?.length || 0} Jobs
+          </div>
         </div>
-    )
-}
 
-export default AdminJobsTable
+        <div className="jobs-table-subtitle">
+          A list of your recent posted jobs
+        </div>
+
+        <div className="jobs-table-scroll">
+          <Table className="admin-main">
+            <TableHeader>
+              <TableRow className="jobs-table-heading">
+                <TableHead>Company Name</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead className="action-heading">
+                  Action
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+
+            <TableBody>
+              {filterJobs?.length > 0 ? (
+                filterJobs.map((job) => (
+                  <TableRow
+                    key={job._id}
+                    className="job-table-row"
+                  >
+                    <TableCell className="company-cell">
+                      <div className="company-info">
+                        <div className="company-icon">
+                          <BriefcaseBusiness size={17} />
+                        </div>
+
+                        <span>
+                          {job?.company?.name}
+                        </span>
+                      </div>
+                    </TableCell>
+
+                    <TableCell className="role-cell">
+                      {job?.title}
+                    </TableCell>
+
+                    <TableCell className="date-cell">
+                      {new Date(
+                        job?.createdAt
+                      ).toLocaleDateString("en-GB")}
+                    </TableCell>
+
+                    <TableCell className="action-cell">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button className="action-button">
+                            <MoreHorizontal size={20} />
+                          </button>
+                        </PopoverTrigger>
+
+                        <PopoverContent className="edit-pops">
+                          <div
+                            onClick={() =>
+                              navigate(`/admin/jobs/${job._id}`)
+                            }
+                            className="job-action edit-action"
+                          >
+                            <Edit2 size={16} />
+                            <span>Edit</span>
+                          </div>
+
+                          <div
+                            onClick={() =>
+                              navigate(
+                                `/admin/jobs/${job._id}/applicants`
+                              )
+                            }
+                            className="job-action applicants-action"
+                          >
+                            <Eye size={16} />
+                            <span>Applicants</span>
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={4}
+                    className="no-jobs"
+                  >
+                    No jobs found
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminJobsTable;

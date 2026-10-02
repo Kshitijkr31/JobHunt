@@ -1,21 +1,326 @@
-/* Styles for tablets and below */
-@media (max-width: 750px) {
-    
-    :root .com-main{
-        width: 22rem;
-        margin-top: 20rem;
-        margin-left: 3rem;
-    }
-  
-    .com-main .btn{
-        font-size: 11px;
-        width: 6rem;
-        margin-top: 0rem;
-        margin-left: 0rem;
-    }
+/* =========================================
+   COMPANIES PAGE
+========================================= */
 
-
-
-
+.companies-page {
+  min-height: 100vh;
+  background: #f8fafc;
 }
-     
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.companies-container {
+  width: min(1200px, calc(100% - 48px));
+  margin: auto;
+  padding: 38px 0 60px;
+  margin-top: 4rem;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.companies-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.companies-title-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.companies-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+
+  color: white;
+
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
+}
+
+.companies-title {
+  margin: 0;
+
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 750;
+
+  color: #111827;
+}
+
+.companies-subtitle {
+  margin: 5px 0 0;
+
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* =========================================
+   NEW COMPANY BUTTON
+========================================= */
+
+.new-company-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  height: 44px;
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.2);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.new-company-button:hover {
+  background: linear-gradient(135deg, #5b21b6, #4338ca);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 22px rgba(79, 70, 229, 0.28);
+}
+
+/* =========================================
+   SEARCH TOOLBAR
+========================================= */
+
+.companies-toolbar {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.company-search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.company-search-icon {
+  position: absolute;
+
+  left: 15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #94a3b8;
+
+  pointer-events: none;
+}
+
+.company-search-input {
+  width: 100%;
+  height: 46px;
+  margin-left: 3rem;
+  padding-left: 44px;
+  padding-right: 40px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+
+  background: white;
+
+  font-size: 14px;
+
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.company-search-input:focus {
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.clear-search {
+  position: absolute;
+
+  right: 12px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 25px;
+  height: 25px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f5f9;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.clear-search:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+/* =========================================
+   TABLE CARD
+========================================= */
+
+.companies-table-card {
+  width: 100%;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+}
+
+/* =========================================
+   TABLE CARD HEADER
+========================================= */
+
+.table-card-header {
+  padding: 22px 26px;
+
+  border-bottom: 1px solid #eef2f7;
+
+  background: #ffffff;
+}
+
+.table-card-header h2 {
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.table-card-header p {
+  margin: 5px 0 0;
+
+  font-size: 13px;
+
+  color: #64748b;
+}
+
+/* =========================================
+   TABLE AREA
+========================================= */
+
+.companies-table-card > div:last-child {
+  width: 100%;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .companies-container {
+    width: calc(100% - 32px);
+    padding-top: 30px;
+    margin-top: 4rem;
+  }
+
+  .companies-header {
+    align-items: flex-start;
+  }
+
+  .companies-title {
+    font-size: 26px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+  .companies-container {
+    width: calc(100% - 28px);
+
+    margin: 0 auto;
+    margin-top: 4rem;
+    padding: 25px 0 40px;
+  }
+
+  .companies-header {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+  }
+
+  .companies-title-section {
+    align-items: center;
+  }
+
+  .companies-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .companies-title {
+    font-size: 24px;
+  }
+
+  .companies-subtitle {
+    font-size: 13px;
+  }
+
+  .new-company-button {
+    width: 100%;
+    height: 46px;
+  }
+
+  .company-search-wrapper {
+    max-width: none;
+  }
+
+  .company-search-input {
+    height: 46px;
+  }
+
+  .companies-table-card {
+    border-radius: 12px;
+
+    overflow-x: auto;
+  }
+
+  .table-card-header {
+    padding: 18px;
+  }
+}

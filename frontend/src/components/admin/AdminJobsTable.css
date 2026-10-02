@@ -1,25 +1,388 @@
-/* Styles for tablets and below */
+/* =========================================
+   ADMIN JOBS TABLE
+========================================= */
+
+.ajt {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* Main card */
+
+.jobs-table-wrapper {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+}
+
+/* Header */
+
+.jobs-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 30px 22px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.jobs-table-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.jobs-table-header p {
+  margin: 7px 0 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.jobs-count {
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: #eef2ff;
+  color: #4040e8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Subtitle */
+
+.jobs-table-subtitle {
+  text-align: center;
+  padding: 18px 20px;
+  color: #64748b;
+  font-size: 14px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+/* Table */
+
+.jobs-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-main {
+  width: 100% !important;
+  min-width: 700px;
+}
+
+/* Table heading */
+
+.jobs-table-heading {
+  height: 58px;
+  background: #f8fafc;
+}
+
+.jobs-table-heading th {
+  color: #526b8a;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0 20px;
+}
+
+.action-heading {
+  text-align: right !important;
+  padding-right: 30px !important;
+}
+
+/* Rows */
+
+.job-table-row {
+  height: 70px;
+  border-bottom: 1px solid #edf0f5;
+  transition: background 0.2s ease;
+}
+
+.job-table-row:hover {
+  background: #f8faff;
+}
+
+.job-table-row td {
+  padding: 0 20px;
+  color: #10233f;
+  font-size: 14px;
+}
+
+/* Company */
+
+.company-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.company-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #4b53c5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.company-cell {
+  min-width: 260px;
+}
+
+.company-info span {
+  white-space: nowrap;
+}
+
+/* Role */
+
+.role-cell {
+  min-width: 300px;
+  font-weight: 500;
+}
+
+.date-cell {
+  min-width: 150px;
+  color: #64748b !important;
+  white-space: nowrap;
+}
+
+/* Action */
+
+.action-cell {
+  text-align: right;
+  width: 100px;
+  padding-right: 25px !important;
+}
+
+.action-button {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #1e293b;
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  background: #eef2ff;
+  color: #4040e8;
+}
+
+/* Popup */
+
+.edit-pops {
+  width: 145px !important;
+  padding: 8px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.14) !important;
+}
+
+.job-action {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.edit-action:hover {
+  background: #eef2ff;
+  color: #4040e8;
+}
+
+.applicants-action:hover {
+  background: #ecfeff;
+  color: #0891b2;
+}
+
+/* Empty state */
+
+.no-jobs {
+  text-align: center;
+  padding: 50px !important;
+  color: #64748b !important;
+  font-size: 15px !important;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .ajt {
+    width: 100%;
+  }
+
+  .jobs-table-header {
+    padding: 24px 20px 18px;
+  }
+
+  .jobs-table-header h2 {
+    font-size: 20px;
+  }
+
+  .jobs-table-header p {
+    font-size: 13px;
+  }
+
+  .jobs-table-subtitle {
+    font-size: 13px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
 @media (max-width: 750px) {
 
-    
-    :root .admin-tb-cap{
-        width: 18rem;
-        margin-top: 0rem;
-        margin-left: 1rem;
-    }
+  .ajt {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 0;
+  }
 
-    :root .admin-main{
-        margin-left: -1rem;
-        display: block;
-        width: 22rem;
-        font-size: 8px;
-      }
-    :root .edit-pops{
-        margin-left: -4rem;
-    }
-.ajt{
-    margin-left: 4rem;
+  .jobs-table-wrapper {
+    border-radius: 14px;
+  }
+
+  .jobs-table-header {
+    padding: 20px 16px;
+    gap: 10px;
+  }
+
+  .jobs-table-header h2 {
+    font-size: 18px;
+  }
+
+  .jobs-table-header p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .jobs-count {
+    font-size: 11px;
+    padding: 7px 10px;
+    white-space: nowrap;
+  }
+
+  .jobs-table-subtitle {
+    padding: 14px 10px;
+    font-size: 12px;
+  }
+
+  /*
+     Horizontal scrolling keeps the table usable
+     on small screens instead of squeezing columns.
+  */
+
+  .jobs-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-main {
+    min-width: 650px !important;
+  }
+
+  .jobs-table-heading th {
+    font-size: 12px;
+    padding: 0 14px;
+  }
+
+  .job-table-row {
+    height: 62px;
+  }
+
+  .job-table-row td {
+    padding: 0 14px;
+    font-size: 12px;
+  }
+
+  .company-cell {
+    min-width: 210px;
+  }
+
+  .role-cell {
+    min-width: 220px;
+  }
+
+  .date-cell {
+    min-width: 120px;
+  }
+
+  .company-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .company-info {
+    gap: 8px;
+  }
+
+  .action-cell {
+    width: 80px;
+    padding-right: 15px !important;
+  }
+
+  .action-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .edit-pops {
+    width: 135px !important;
+  }
+
+  .job-action {
+    font-size: 12px;
+    padding: 8px;
+  }
 }
 
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 450px) {
+
+  .jobs-table-header {
+    align-items: flex-start;
+  }
+
+  .jobs-count {
+    margin-top: 2px;
+  }
+
+  .jobs-table-header h2 {
+    font-size: 17px;
+  }
+
+  .jobs-table-header p {
+    max-width: 210px;
+  }
+
+  .admin-main {
+    min-width: 620px !important;
+  }
 }
-     

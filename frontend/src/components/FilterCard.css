@@ -1,30 +1,307 @@
-/* Styles for tablets and below */
+/* =========================================================
+   FILTER CARD
+========================================================= */
+
+.filter-main {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 15px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.filter-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.filter-header h1 {
+    margin: 0;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    color: #111827;
+}
+
+.filter-header p {
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+.filter-clear-icon {
+    width: 30px;
+
+    height: 30px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #64748b;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.filter-clear-icon:hover {
+    background: #f3e8ff;
+
+    color: #7209b7;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.filter-divider {
+    height: 1px;
+
+    width: 100%;
+
+    margin: 15px 0;
+
+    background: #e5e7eb;
+}
+
+
+/* =========================================================
+   GROUP
+========================================================= */
+
+.filter-group {
+    margin-bottom: 18px;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.filter-group:last-of-type {
+    border-bottom: none;
+
+    margin-bottom: 0;
+}
+
+.filter-group-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    color: #111827;
+
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+.filter-group-title svg {
+    color: #7209b7;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+.filter-options {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.filter-option {
+    width: 100%;
+
+    min-height: 34px;
+
+    padding: 5px 6px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #475569;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    text-align: left;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.filter-option:hover {
+    background: #faf5ff;
+
+    color: #7209b7;
+}
+
+.filter-option-active {
+    background: #f3e8ff;
+
+    color: #7209b7;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CUSTOM RADIO
+========================================================= */
+
+.filter-radio {
+    width: 14px;
+
+    height: 14px;
+
+    border: 1.5px solid #cbd5e1;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.filter-radio-active {
+    border-color: #7209b7;
+
+    background: #7209b7;
+}
+
+.filter-radio-dot {
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   CLEAR ALL
+========================================================= */
+
+.clear-all-filters {
+    width: 100%;
+
+    height: 38px;
+
+    margin-top: 4px;
+
+    border: 1px solid #7209b7;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #7209b7;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.clear-all-filters:hover {
+    background: #7209b7;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 750px) {
- 
-:root .filter-main{
-    width: 22rem;
-    margin-top: -4rem;
-    margin-left: 0rem;
-}
 
+    .filter-main {
+        min-height: 100%;
 
+        border: none;
 
+        border-radius: 0;
 
+        box-shadow: none;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        padding: 22px 18px 35px;
+    }
 
 }
-             

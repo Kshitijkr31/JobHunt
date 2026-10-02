@@ -1,22 +1,527 @@
-/* Styles for tablets and below */
-@media (max-width: 750px) {
-    
-  
+/* =========================================
+   COMPANY SETUP PAGE
+========================================= */
 
-    :root .setup-main{
-        margin-top: 0rem;
-        width: 22rem;
-        margin-left: 2rem;
-    }
-     .btn-bck{
-        margin-top: rem;
-        margin-left: -10rem;
-     }
-    
-     .setup-main .up-com{
-        margin-left: -3rem;
-    }
-    
-    
-    
+.company-setup-page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.company-setup-container {
+  width: min(1050px, calc(100% - 48px));
+
+  margin: 0 auto;
+
+  padding: 30px 0 60px;
+}
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.company-back-button {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 8px;
+
+  border: none;
+  background: transparent;
+
+  color: #64748b;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 7px 0;
+
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.company-back-button:hover {
+  color: #4f46e5;
+
+  transform: translateX(-3px);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.company-setup-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  margin-top: 25px;
+
+  margin-bottom: 25px;
+}
+
+.company-setup-icon {
+  width: 54px;
+  height: 54px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  color: white;
+
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
+}
+
+.company-setup-header h1 {
+  margin: 0;
+
+  font-size: 28px;
+
+  font-weight: 750;
+
+  color: #111827;
+}
+
+.company-setup-header p {
+  margin: 5px 0 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.company-setup-card {
+  width: 100%;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+
+  overflow: hidden;
+}
+
+.company-setup-card form {
+  width: 100%;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.setup-section {
+  padding: 28px;
+}
+
+.setup-section + .setup-section {
+  border-top: 1px solid #eef2f7;
+}
+
+.setup-section-heading {
+  margin-bottom: 22px;
+}
+
+.setup-section-heading h2 {
+  margin: 0;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.setup-section-heading p {
+  margin: 5px 0 0;
+
+  font-size: 13px;
+
+  color: #64748b;
+}
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.setup-form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+.setup-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.setup-field label {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #334155;
+}
+
+/* =========================================
+   INPUT
+========================================= */
+
+.setup-input-wrapper {
+  position: relative;
+}
+
+.setup-input-wrapper input {
+  height: 46px;
+
+  padding-left: 42px;
+
+  border: 1px solid #dbe2ea;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.setup-input-wrapper input:focus {
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.setup-input-icon {
+  position: absolute;
+
+  left: 14px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #94a3b8;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.setup-description-field {
+  grid-column: span 2;
+}
+
+.company-description-input {
+  width: 100%;
+
+  min-height: 110px;
+
+  resize: vertical;
+
+  padding: 12px 14px;
+
+  border: 1px solid #dbe2ea;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  color: #1e293b;
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.company-description-input:focus {
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.company-description-input::placeholder {
+  color: #94a3b8;
+}
+
+/* =========================================
+   LOGO SECTION
+========================================= */
+
+.logo-section {
+  padding-top: 25px;
+}
+
+.logo-upload-area {
+  display: flex;
+
+  align-items: center;
+
+  gap: 22px;
+
+  padding: 18px;
+
+  border: 1px dashed #cbd5e1;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+}
+
+.current-company-logo {
+  width: 82px;
+  height: 82px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+
+.current-company-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  padding: 8px;
+}
+
+.logo-upload-content {
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.logo-label {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #334155;
+}
+
+.company-file-input {
+  width: 100%;
+
+  max-width: 500px;
+
+  background: white;
+
+  cursor: pointer;
+}
+
+.logo-upload-content p {
+  margin: 0;
+
+  font-size: 12px;
+
+  color: #94a3b8;
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.company-setup-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  padding: 20px 28px;
+
+  background: #f8fafc;
+
+  border-top: 1px solid #eef2f7;
+}
+
+.cancel-company-button {
+  height: 44px;
+
+  padding: 0 22px;
+
+  border-radius: 9px;
+
+  font-weight: 600;
+}
+
+.update-company-button {
+  height: 44px;
+
+  min-width: 155px;
+
+  padding: 0 24px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+
+  color: white;
+
+  font-weight: 600;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.update-company-button:hover {
+  background: linear-gradient(135deg, #5b21b6, #4338ca);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 7px 18px rgba(79, 70, 229, 0.25);
+}
+
+.update-loader {
+  margin-right: 8px;
+
+  animation: company-spin 1s linear infinite;
+}
+
+@keyframes company-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .company-setup-container {
+    width: calc(100% - 32px);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+  .company-setup-container {
+    width: calc(100% - 28px);
+
+    padding: 22px 0 40px;
+  }
+
+  .company-setup-header {
+    margin-top: 20px;
+
+    align-items: flex-start;
+  }
+
+  .company-setup-icon {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 12px;
+  }
+
+  .company-setup-header h1 {
+    font-size: 23px;
+  }
+
+  .company-setup-header p {
+    font-size: 12px;
+
+    line-height: 1.5;
+  }
+
+  .setup-section {
+    padding: 20px;
+  }
+
+  .setup-form-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .setup-description-field {
+    grid-column: auto;
+  }
+
+  .logo-upload-area {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .current-company-logo {
+    width: 75px;
+    height: 75px;
+  }
+
+  .company-file-input {
+    max-width: none;
+  }
+
+  .company-setup-actions {
+    flex-direction: column-reverse;
+
+    align-items: stretch;
+
+    padding: 18px 20px;
+  }
+
+  .cancel-company-button,
+  .update-company-button {
+    width: 100%;
+  }
 }

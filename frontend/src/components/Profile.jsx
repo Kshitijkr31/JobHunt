@@ -1,99 +1,255 @@
-import React, { useState } from 'react'
-import Navbar from './shared/Navbar'
-import { Avatar, AvatarImage } from './ui/avatar'
-import { Button } from './ui/button'
-import { Contact, Mail, Pen } from 'lucide-react'
-import { Badge } from './ui/badge'
-import { Label } from './ui/label'
-import AppliedJobTable from './AppliedJobTable'
-import UpdateProfileDialog from './UpdateProfileDialog'
-import { useSelector } from 'react-redux'
-import useGetAppliedJobs from '@/hooks/useGetAppliedJobs'
-import './Profile.css';
-
-// const skills = ["Html", "Css", "Javascript", "Reactjs"]
-const isResume = true;
+import React, { useState } from "react";
+import Navbar from "./shared/Navbar";
+import { Avatar, AvatarImage } from "./ui/avatar";
+import { Button } from "./ui/button";
+import {
+  Mail,
+  Phone,
+  Pen,
+  FileText,
+  Download,
+  BriefcaseBusiness,
+  MapPin,
+  Sparkles,
+  ExternalLink,
+} from "lucide-react";
+import { Badge } from "./ui/badge";
+import AppliedJobTable from "./AppliedJobTable";
+import UpdateProfileDialog from "./UpdateProfileDialog";
+import { useSelector } from "react-redux";
+import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
+import "./Profile.css";
 
 const Profile = () => {
-    useGetAppliedJobs();
-    const [open, setOpen] = useState(false);
-    const {user} = useSelector(store=>store.auth);
+  useGetAppliedJobs();
 
-    return (
-        <div>
-            <Navbar />
-             <div className='profile-main w-[53.5rem] mx-auto bg-white border ml-[21.5rem] mt-[5rem] border-gray-600 rounded-2xl  p-8'>
-                <div className='flex justify-between'>
-                    <div className='flex items-center gap-4'>
-                        <Avatar className=" profile-img h-24 w-24 ">
-                            <AvatarImage src={user?.profile?.profilePhoto || 'https://path/to/placeholder-image.jpg'}
-                        alt="profile" />
-                        </Avatar>
-                        
-                        <div>
-                        <Button 
-                    onClick={() => setOpen(true)} 
-                    className=" profile-btn text-right ml-[37rem] mt-[-18rem] bg-blue-800 text-white hover:origin-center transition-transform transform hover:scale-125 active:scale-150" variant="outline"><Pen /></Button>
-                            <h1 className='profile-head font-medium text-xl'>
-                                {user?.fullname}</h1>
-                                
-                            <p className='p-head'>
-                                {user?.profile?.bio}  </p>
-                        </div>
-                    </div>
+  const [open, setOpen] = useState(false);
+  const { user } = useSelector((store) => store.auth);
+  const { allAppliedJobs = [] } = useSelector((store) => store.job);
+
+  const skills = user?.profile?.skills || [];
+
+  return (
+    <div className="profile-page">
+      <Navbar />
+
+      <main className="profile-container">
+
+        {/* ================= PROFILE HERO ================= */}
+        <section className="profile-card">
+
+          <div className="profile-card-glow"></div>
+
+          <div className="profile-top">
+
+            <div className="profile-identity">
+
+              <div className="profile-avatar-wrapper">
+                <Avatar className="profile-avatar">
+                  <AvatarImage
+                    src={
+                      user?.profile?.profilePhoto ||
+                      "https://via.placeholder.com/150"
+                    }
+                    alt="Profile"
+                  />
+                </Avatar>
+
+                <span className="profile-online-dot"></span>
+              </div>
+
+              <div className="profile-basic-info">
+
+                <div className="profile-name-row">
+                  <h1>{user?.fullname || "Your Name"}</h1>
+
+                  <span className="profile-verified">
+                    <Sparkles size={13} />
+                    Job Seeker
+                  </span>
                 </div>
-                <div className='my-5'>
-                    <div className='flex items-center gap-3 my-2'>
-                        <Mail />
-                        <span>
-                            {user?.email}</span>
-                    </div>
-                    <div className='pno flex items-center gap-3 my-2'>
-                        <Contact />
-                        <span>
-                            {user?.phoneNumber}</span>
-                    
-                    </div>
+
+                <p className="profile-bio">
+                  {user?.profile?.bio ||
+                    "Add a professional bio to tell recruiters about yourself."}
+                </p>
+
+                <div className="profile-location">
+                  <MapPin size={15} />
+                  <span>India</span>
                 </div>
-                <div className='skills-main my-5'>
-                    <h1 className='text-xl'>Skills</h1>
-                    <div className='profile-skills flex items-center gap-2 mt-1'>
-                        {
-                            user?.profile?.
-                            skills.length !== 0 ? 
-                            user?.profile?.
-                            skills.map((item, index) => <Badge key={index} > {item }</Badge>) 
-                            : <span>NA</span>
-                        }
-                    </div>
-                </div>
-                <div className='grid justify-center w-full max-w-sm items-center gap-1.5'>
-                    <Label className="resume-label text-md font-bold ml-[-12rem]">Resume</Label>
-                </div>
-                {
-                        isResume ? 
-                        <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={user?.profile?.resume} // Should point to the secure URL from Cloudinary
-                            className="text-blue-500 hover:text-[#1b02f8] ml-2 w-full transition-transform transform hover:scale-110 active:scale-125 cursor-pointer"
-                        >
-                            {user?.profile?.resumeOriginalName || "View Resume"}
-                        </a>
-                        :
-                        <span>NA</span>
+
+              </div>
+            </div>
+
+            <Button
+              onClick={() => setOpen(true)}
+              className="profile-edit-btn"
+            >
+              <Pen size={16} />
+              Edit Profile
+            </Button>
+
+          </div>
 
 
-}
-            </div> 
-                <div className='applied-job-head max-w-4xl mx-auto bg-white rounded-2xl ml-[21.5rem]'>
-                    <h1 className='applied-jobh1 font-bold text-lg my-5'>Applied Jobs</h1>
-                    {/* Applied Job Table   */}
-                    <AppliedJobTable />
-                </div>
-                <UpdateProfileDialog open={open} setOpen={setOpen}/>
-        </div>
-    )
-}
+          {/* ================= CONTACT INFO ================= */}
+          <div className="profile-contact-grid">
 
-export default Profile
+            <div className="profile-contact-item">
+              <div className="contact-icon">
+                <Mail size={18} />
+              </div>
+
+              <div>
+                <span>Email</span>
+                <p>{user?.email || "Not provided"}</p>
+              </div>
+            </div>
+
+            <div className="profile-contact-item">
+              <div className="contact-icon">
+                <Phone size={18} />
+              </div>
+
+              <div>
+                <span>Phone</span>
+                <p>{user?.phoneNumber || "Not provided"}</p>
+              </div>
+            </div>
+
+            <div className="profile-contact-item">
+              <div className="contact-icon">
+                <BriefcaseBusiness size={18} />
+              </div>
+
+              <div>
+                <span>Applications</span>
+                <p>
+                  {allAppliedJobs.length}{" "}
+                  {allAppliedJobs.length === 1
+                    ? "Application"
+                    : "Applications"}
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+
+          {/* ================= SKILLS ================= */}
+          <div className="profile-section">
+
+            <div className="section-heading">
+              <div>
+                <span className="section-label">EXPERTISE</span>
+                <h2>Skills & Technologies</h2>
+              </div>
+            </div>
+
+            <div className="profile-skills">
+
+              {skills.length > 0 ? (
+                skills.map((skill, index) => (
+                  <Badge
+                    key={index}
+                    className="profile-skill"
+                  >
+                    {skill}
+                  </Badge>
+                ))
+              ) : (
+                <span className="empty-text">
+                  No skills added yet.
+                </span>
+              )}
+
+            </div>
+
+          </div>
+
+
+          {/* ================= RESUME ================= */}
+          <div className="resume-section">
+
+            <div className="resume-left">
+
+              <div className="resume-icon">
+                <FileText size={22} />
+              </div>
+
+              <div>
+                <span className="section-label">RESUME</span>
+
+                <h3>
+                  {user?.profile?.resumeOriginalName ||
+                    "No resume uploaded"}
+                </h3>
+
+                <p>
+                  Keep your resume updated to improve your job applications.
+                </p>
+              </div>
+
+            </div>
+
+            {user?.profile?.resume && (
+              <a
+                href={user.profile.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="resume-button"
+              >
+                <Download size={17} />
+                View Resume
+                <ExternalLink size={14} />
+              </a>
+            )}
+
+          </div>
+
+        </section>
+
+
+        {/* ================= APPLIED JOBS ================= */}
+        <section className="applications-section">
+
+          <div className="applications-header">
+
+            <div>
+              <span className="section-label">
+                YOUR ACTIVITY
+              </span>
+
+              <h2>Applied Jobs</h2>
+
+              <p>
+                Track the jobs you have applied for and their current status.
+              </p>
+            </div>
+
+            <div className="application-count">
+              <BriefcaseBusiness size={18} />
+              <span>{allAppliedJobs.length}</span>
+            </div>
+
+          </div>
+
+          <div className="applications-card">
+            <AppliedJobTable />
+          </div>
+
+        </section>
+
+      </main>
+
+      <UpdateProfileDialog
+        open={open}
+        setOpen={setOpen}
+      />
+
+    </div>
+  );
+};
+
+export default Profile;

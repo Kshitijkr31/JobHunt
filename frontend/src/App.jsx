@@ -1,7 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-// import './App.css'; // Importing the global CSS for styling
 
-// Components
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import Home from './components/Home'
@@ -9,24 +7,67 @@ import Jobs from './components/Jobs'
 import Browse from './components/Browse'
 import Profile from './components/Profile'
 import JobDescription from './components/JobDescription'
+
+import Bookmarks from './components/Bookmarks'
+import SavedJobs from './components/SavedJobs'
+
 import Companies from './components/admin/Companies'
 import CompanyCreate from './components/admin/CompanyCreate'
 import CompanySetup from './components/admin/CompanySetup'
-import AdminJobs from "./components/admin/AdminJobs";
+import AdminJobs from "./components/admin/AdminJobs"
 import PostJob from './components/admin/PostJob'
 import Applicants from './components/admin/Applicants'
 import JobSetup from './components/admin/JobSetup'
 import ProtectedRoute from './components/admin/ProtectedRoute'
-import { Toaster } from "react-hot-toast";
+
+import { Toaster } from "react-hot-toast"
 
 const appRouter = createBrowserRouter([
-  { path: '/', element: <Home /> },
-  { path: '/login', element: <Login /> },
-  { path: '/signup', element: <Signup /> },
-  { path: '/jobs', element: <Jobs /> },
-  { path: '/description/:id', element: <JobDescription /> },
-  { path: '/browse', element: <Browse /> },
-  { path: '/profile', element: <Profile /> },
+  {
+    path: '/',
+    element: <Home />
+  },
+
+  {
+    path: '/login',
+    element: <Login />
+  },
+
+  {
+    path: '/signup',
+    element: <Signup />
+  },
+
+  {
+    path: '/jobs',
+    element: <Jobs />
+  },
+
+  {
+    path: '/description/:id',
+    element: <JobDescription />
+  },
+
+  {
+    path: '/browse',
+    element: <Browse />
+  },
+
+  {
+    path: '/profile',
+    element: <Profile />
+  },
+
+  {
+    path: '/bookmarks',
+    element: <Bookmarks />
+  },
+
+  {
+    path: '/saved-jobs',
+    element: <SavedJobs />
+  },
+
   {
     path: "/admin/companies",
     element:
@@ -34,6 +75,7 @@ const appRouter = createBrowserRouter([
         <Companies />
       </ProtectedRoute>
   },
+
   {
     path: "/admin/companies/create",
     element:
@@ -41,6 +83,7 @@ const appRouter = createBrowserRouter([
         <CompanyCreate />
       </ProtectedRoute>
   },
+
   {
     path: "/admin/companies/:id",
     element:
@@ -48,6 +91,7 @@ const appRouter = createBrowserRouter([
         <CompanySetup />
       </ProtectedRoute>
   },
+
   {
     path: "/admin/jobs",
     element:
@@ -55,6 +99,7 @@ const appRouter = createBrowserRouter([
         <AdminJobs />
       </ProtectedRoute>
   },
+
   {
     path: "/admin/jobs/create",
     element:
@@ -62,6 +107,7 @@ const appRouter = createBrowserRouter([
         <PostJob />
       </ProtectedRoute>
   },
+
   {
     path: "/admin/jobs/:id/applicants",
     element:
@@ -69,6 +115,7 @@ const appRouter = createBrowserRouter([
         <Applicants />
       </ProtectedRoute>
   },
+
   {
     path: "/admin/jobs/:id",
     element:
@@ -76,18 +123,18 @@ const appRouter = createBrowserRouter([
         <JobSetup />
       </ProtectedRoute>
   },
-]);
+])
 
 function App() {
   return (
     <>
-    <Toaster />
-    <div className="app-container">
-      <RouterProvider router={appRouter} />
-    </div>
+      <Toaster />
+
+      <div className="app-container">
+        <RouterProvider router={appRouter} />
+      </div>
     </>
-  );
-  
+  )
 }
 
-export default App;
+export default App

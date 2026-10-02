@@ -1,19 +1,701 @@
-.latest-jobs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+/* =========================================
+   JOBHUNT - LATEST JOBS
+   Animated Background + Card Entrance
+========================================= */
+
+.latest-jobs-section {
+  position: relative;
+
+  padding: 70px 20px 100px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #f5f7ff 100%
+    );
+}
+
+/* =========================================
+   ANIMATED LATEST JOBS BACKGROUND
+========================================= */
+
+.latest-jobs-section {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(99, 102, 241, 0.07),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 70%,
+      rgba(124, 58, 237, 0.06),
+      transparent 30%
+    ),
+    #f8fafc;
 }
 
 
-@media (max-width:750px) {
- 
-    .latest-jobs-grid{
-        width: 27rem;
-        display: block;
-        margin-left: -5rem;
-    }
+/* Dot texture */
 
-    .latest-jobs-container .latest-jobs-title{
-        font-size: 20px;
-        margin-left: -5rem;
-    }
+.latest-jobs-section::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    radial-gradient(
+      rgba(99, 102, 241, 0.12) 1px,
+      transparent 1px
+    );
+
+  background-size: 30px 30px;
+
+  opacity: 0.25;
+
+  pointer-events: none;
+}
+
+
+/* Floating glow */
+
+.latest-jobs-section::after {
+  content: "";
+
+  position: absolute;
+
+  width: 400px;
+  height: 400px;
+
+  left: -180px;
+  top: 100px;
+
+  border-radius: 50%;
+
+  background: rgba(99, 102, 241, 0.08);
+
+  filter: blur(80px);
+
+  animation: latestGlowFloat 10s ease-in-out infinite alternate;
+
+  pointer-events: none;
+}
+
+
+@keyframes latestGlowFloat {
+
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(180px, 40px);
+  }
+
+}
+
+
+/* Keep content above background */
+
+.latest-jobs-container {
+  position: relative;
+  z-index: 2;
+}
+/* =========================================
+   ANIMATED BACKGROUND GLOWS
+========================================= */
+
+.latest-jobs-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  left: -180px;
+  top: 80px;
+
+  border-radius: 50%;
+
+  background: rgba(99, 102, 241, 0.08);
+
+  filter: blur(80px);
+
+  animation: latestGlowOne 11s ease-in-out infinite alternate;
+
+  pointer-events: none;
+}
+
+
+.latest-jobs-section::after {
+  content: "";
+
+  position: absolute;
+
+  width: 400px;
+  height: 400px;
+
+  right: -170px;
+  bottom: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(124, 58, 237, 0.08);
+
+  filter: blur(80px);
+
+  animation: latestGlowTwo 13s ease-in-out infinite alternate;
+
+  pointer-events: none;
+}
+
+
+@keyframes latestGlowOne {
+
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(80px, -20px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(30px, 60px) scale(1.15);
+  }
+
+}
+
+
+@keyframes latestGlowTwo {
+
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-60px, -30px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(-20px, -70px) scale(1.15);
+  }
+
+}
+
+
+/* =========================================
+   SUBTLE DOT TEXTURE
+========================================= */
+
+.latest-jobs-section {
+  background-image:
+    radial-gradient(
+      rgba(99, 102, 241, 0.10) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #f5f7ff 100%
+    );
+
+  background-size:
+    30px 30px,
+    100% 100%;
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.latest-jobs-container {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 1180px;
+
+  margin: auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.latest-jobs-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: end;
+
+  margin-bottom: 32px;
+
+  animation: latestHeaderIn 0.8s ease-out both;
+}
+
+
+@keyframes latestHeaderIn {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.latest-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 8px;
+
+  color: #6366f1;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  animation: latestLabelIn 0.7s ease-out 0.15s both;
+}
+
+
+@keyframes latestLabelIn {
+
+  from {
+    opacity: 0;
+
+    transform: translateX(-15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.latest-jobs-header h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 32px;
+
+  font-weight: 850;
+
+  letter-spacing: -0.8px;
+}
+
+
+.latest-jobs-header h2 span {
+
+  background:
+    linear-gradient(
+      90deg,
+      #4f46e5,
+      #7c3aed,
+      #2563eb,
+      #4f46e5
+    );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: latestGradient 5s ease infinite;
+}
+
+
+@keyframes latestGradient {
+
+  0% {
+    background-position: 0% center;
+  }
+
+  50% {
+    background-position: 100% center;
+  }
+
+  100% {
+    background-position: 0% center;
+  }
+
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.latest-jobs-header p {
+
+  margin-top: 8px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+
+  animation: latestDescriptionIn 0.7s ease-out 0.3s both;
+}
+
+
+@keyframes latestDescriptionIn {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================
+   VIEW ALL BUTTON
+========================================= */
+
+.latest-view-button {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #4f46e5;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+
+.latest-view-button:hover {
+
+  color: #7c3aed;
+
+  transform: translateX(5px);
+}
+
+
+/* =========================================
+   JOB GRID
+========================================= */
+
+.latest-jobs-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+
+/* =========================================
+   JOB CARD ANIMATION
+
+   This targets your LatestJobCards
+   without changing its JSX.
+========================================= */
+
+.latest-jobs-grid > * {
+
+  opacity: 0;
+
+  animation:
+    latestCardEntrance
+    0.7s
+    ease-out
+    forwards;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+
+.latest-jobs-grid > *:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.latest-jobs-grid > *:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.latest-jobs-grid > *:nth-child(3) {
+  animation-delay: 0.35s;
+}
+
+.latest-jobs-grid > *:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.latest-jobs-grid > *:nth-child(5) {
+  animation-delay: 0.55s;
+}
+
+.latest-jobs-grid > *:nth-child(6) {
+  animation-delay: 0.65s;
+}
+
+
+@keyframes latestCardEntrance {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(35px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================
+   CARD HOVER
+
+   Works with most card structures.
+========================================= */
+
+.latest-jobs-grid > *:hover {
+
+  transform: translateY(-6px);
+
+  filter:
+    drop-shadow(
+      0 15px 25px
+      rgba(79, 70, 229, 0.12)
+    );
+}
+
+
+/* =========================================
+   NO JOBS
+========================================= */
+
+.no-jobs {
+
+  position: relative;
+
+  padding: 60px;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  backdrop-filter: blur(8px);
+
+  -webkit-backdrop-filter: blur(8px);
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 18px;
+
+  color: #6b7280;
+
+  box-shadow:
+    0 15px 35px rgba(79, 70, 229, 0.06);
+
+  animation:
+    noJobsEntrance
+    0.7s
+    ease-out
+    both;
+}
+
+
+@keyframes noJobsEntrance {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 950px) {
+
+  .latest-jobs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+  .latest-jobs-section {
+
+    padding:
+      55px
+      15px
+      75px;
+
+  }
+
+
+  .latest-jobs-header {
+
+    align-items: flex-start;
+  }
+
+
+  .latest-jobs-header h2 {
+
+    font-size: 25px;
+
+    letter-spacing: -0.5px;
+  }
+
+
+  .latest-jobs-header p {
+
+    font-size: 13px;
+
+    line-height: 1.6;
+  }
+
+
+  .latest-view-button {
+
+    display: none;
+  }
+
+
+  .latest-jobs-grid {
+
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+
+  .latest-jobs-section::before {
+
+    width: 280px;
+    height: 280px;
+
+    left: -150px;
+  }
+
+
+  .latest-jobs-section::after {
+
+    width: 280px;
+    height: 280px;
+
+    right: -150px;
+  }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .latest-jobs-section::before,
+  .latest-jobs-section::after,
+  .latest-jobs-header,
+  .latest-label,
+  .latest-jobs-header p,
+  .latest-jobs-header h2 span,
+  .latest-jobs-grid > *,
+  .no-jobs {
+
+    animation: none !important;
+
+    opacity: 1 !important;
+  }
+
+
+  .latest-jobs-grid > *,
+  .latest-view-button {
+
+    transition: none !important;
+  }
+
 }

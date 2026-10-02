@@ -16,10 +16,8 @@ import axios from "axios";
 import { JOB_API_END_POINT } from "@/utils/constant";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Loader2 } from "lucide-react";
-import './PostJob.css';
-
-const companyArray = [];
+import { ArrowLeft, Loader2, BriefcaseBusiness } from "lucide-react";
+import "./PostJob.css";
 
 const PostJob = () => {
   const [input, setInput] = useState({
@@ -39,22 +37,38 @@ const PostJob = () => {
     position: 0,
     companyId: "",
   });
+
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const { companies } = useSelector((store) => store.company);
+
   const changeEventHandler = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handlePreferredQualificationsChange = (category, value, index) => {
+  const handlePreferredQualificationsChange = (
+    category,
+    value,
+    index
+  ) => {
     setInput((prevState) => {
-      const updatedQualifications = [...prevState.preferredQualifications];
+      const updatedQualifications = [
+        ...prevState.preferredQualifications,
+      ];
+
       updatedQualifications[index] = {
         ...updatedQualifications[index],
-        details: value.split(","), // Split by comma or any separator
+        details: value.split(","),
       };
-      return { ...prevState, preferredQualifications: updatedQualifications };
+
+      return {
+        ...prevState,
+        preferredQualifications: updatedQualifications,
+      };
     });
   };
 
@@ -62,196 +76,279 @@ const PostJob = () => {
     const selectedCompany = companies.find(
       (company) => company.name.toLowerCase() === value
     );
-    setInput({ ...input, companyId: selectedCompany._id });
+
+    setInput({
+      ...input,
+      companyId: selectedCompany._id,
+    });
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
     try {
       setLoading(true);
-      const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+
+      const res = await axios.post(
+        `${JOB_API_END_POINT}/post`,
+        input,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
       if (res.data.success) {
         toast.success(res.data.message);
         navigate("/admin/jobs");
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(
+        error?.response?.data?.message || "Something went wrong"
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div className="post-page">
       <Navbar />
+
+      {/* Back Button */}
       <Button
         onClick={() => navigate("/admin/jobs")}
-        variant='outline'
-        className='bg-[#000000] btn-post text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125 ml-[9rem] mt-[5rem]'
+        variant="outline"
+        className="post-back-button"
       >
-        <ArrowLeft />
+        <ArrowLeft size={18} />
         <span>Back</span>
       </Button>
-      <div className='post-main flex items-center justify-center w-screen my-5'>
-        <form
-          onSubmit={submitHandler}
-          className='p-8 max-w-4xl border mt-[-4.6rem] border-gray-200 shadow-lg rounded-md'
-        >
-          <div className='grid grid-cols-2 gap-2'>
+
+      <main className="post-container">
+        {/* Page Header */}
+        <div className="post-page-header">
+          <div className="post-title-icon">
+            <BriefcaseBusiness size={28} />
+          </div>
+
+          <div>
+            <h1>Post New Job</h1>
+            <p>
+              Create and publish a new job opportunity for your company
+            </p>
+          </div>
+        </div>
+
+        {/* Form Card */}
+        <div className="post-form-card">
+          <div className="post-form-heading">
             <div>
-              <Label>Title</Label>
-              <Input
-                type='text'
-                name='title'
-                value={input.title}
-                onChange={changeEventHandler}
-                placeholder='Title of Job'
-                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-              />
+              <h2>Job Details</h2>
+              <p>
+                Enter the information below to create your job posting
+              </p>
             </div>
-            <div>
-              <Label>Description</Label>
-              <Input
-                type='text'
-                name='description'
-                value={input.description}
-                onChange={changeEventHandler}
-                placeholder='Job Details'
-                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-              />
+          </div>
+
+          <form onSubmit={submitHandler}>
+            {/* Basic Information */}
+            <div className="form-section">
+              <h3>Basic Information</h3>
+
+              <div className="form-grid">
+                <div className="form-field">
+                  <Label>Job Title</Label>
+                  <Input
+                    type="text"
+                    name="title"
+                    value={input.title}
+                    onChange={changeEventHandler}
+                    placeholder="Software Engineer, Manager etc."
+                  />
+                </div>
+
+                <div className="form-field">
+                  <Label>Location</Label>
+                  <Input
+                    type="text"
+                    name="location"
+                    value={input.location}
+                    onChange={changeEventHandler}
+                    placeholder="City, Country"
+                  />
+                </div>
+
+                <div className="form-field">
+                  <Label>Salary</Label>
+                  <Input
+                    type="text"
+                    name="salary"
+                    value={input.salary}
+                    onChange={changeEventHandler}
+                    placeholder="e.g. ₹6,00,000 per annum"
+                  />
+                </div>
+
+                <div className="form-field">
+                  <Label>Job Type</Label>
+                  <Input
+                    type="text"
+                    name="jobType"
+                    value={input.jobType}
+                    onChange={changeEventHandler}
+                    placeholder="Full-time, Permanent"
+                  />
+                </div>
+
+                <div className="form-field">
+                  <Label>Experience Level</Label>
+                  <Input
+                    type="text"
+                    name="experience"
+                    value={input.experience}
+                    onChange={changeEventHandler}
+                    placeholder="e.g. 2-4 years"
+                  />
+                </div>
+
+                <div className="form-field">
+                  <Label>Number of Positions</Label>
+                  <Input
+                    type="number"
+                    name="position"
+                    value={input.position}
+                    onChange={changeEventHandler}
+                    placeholder="Number of vacancies"
+                  />
+                </div>
+              </div>
             </div>
-            {input.preferredQualifications.map((qualification, index) => (
-              <div key={qualification.category + index}>
-                <Label>{qualification.category}</Label>
+
+            {/* Description */}
+            <div className="form-section">
+              <h3>Job Description</h3>
+
+              <div className="form-field">
+                <Label>Description</Label>
                 <Input
-                  type='text'
-                  name={`${qualification.category}-${index}`}
-                  value={qualification.details.join(", ")}
-                  onChange={(e) =>
-                    handlePreferredQualificationsChange(
-                      qualification.category,
-                      e.target.value,
-                      index
-                    )
-                  }
-                  className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-                  placeholder={`Enter ${qualification.category} details`}
+                  type="text"
+                  name="description"
+                  value={input.description}
+                  onChange={changeEventHandler}
+                  placeholder="Describe the role and responsibilities"
                 />
               </div>
-            ))}
+            </div>
 
-            <div>
-              <Label>Requirements</Label>
-              <Input
-                type='text'
-                name='requirements'
-                value={input.requirements}
-                onChange={changeEventHandler}
-                placeholder='Requirements needed'
-                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-              />
+            {/* Requirements */}
+            <div className="form-section">
+              <h3>Requirements</h3>
+
+              <div className="form-field">
+                <Label>Required Skills & Requirements</Label>
+                <Input
+                  type="text"
+                  name="requirements"
+                  value={input.requirements}
+                  onChange={changeEventHandler}
+                  placeholder="React, JavaScript, Node.js, MongoDB..."
+                />
+              </div>
             </div>
-            <div>
-              <Label>Salary</Label>
-              <Input
-                type='text'
-                name='salary'
-                value={input.salary}
-                onChange={changeEventHandler}
-                placeholder='Pay-Scale'
-                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-              />
+
+            {/* Qualifications */}
+            <div className="form-section">
+              <h3>Preferred Qualifications</h3>
+
+              <div className="form-grid">
+                {input.preferredQualifications.map(
+                  (qualification, index) => (
+                    <div
+                      key={qualification.category + index}
+                      className="form-field"
+                    >
+                      <Label>{qualification.category}</Label>
+
+                      <Input
+                        type="text"
+                        value={qualification.details.join(", ")}
+                        onChange={(e) =>
+                          handlePreferredQualificationsChange(
+                            qualification.category,
+                            e.target.value,
+                            index
+                          )
+                        }
+                        placeholder={`Preferred ${qualification.category}`}
+                      />
+                    </div>
+                  )
+                )}
+              </div>
             </div>
-            <div>
-              <Label>Location</Label>
-              <Input
-                type='text'
-                name='location'
-                value={input.location}
-                onChange={changeEventHandler}
-                placeholder="Job's Company Name"
-                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-              />
+
+            {/* Company */}
+            <div className="form-section">
+              <h3>Company</h3>
+
+              {companies.length > 0 ? (
+                <div className="form-field company-field">
+                  <Label>Select Company</Label>
+
+                  <Select onValueChange={selectChangeHandler}>
+                    <SelectTrigger className="company-select">
+                      <SelectValue placeholder="Select a company" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      <SelectGroup>
+                        {companies.map((company) => (
+                          <SelectItem
+                            key={company._id}
+                            value={company.name.toLowerCase()}
+                          >
+                            {company.name}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+              ) : (
+                <div className="no-company-message">
+                  <span>
+                    * Please register a company first before posting a job.
+                  </span>
+                </div>
+              )}
             </div>
-            <div>
-              <Label>Job Type</Label>
-              <Input
-                type='text'
-                name='jobType'
-                value={input.jobType}
-                onChange={changeEventHandler}
-                placeholder='Type of Job'
-                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-              />
+
+            {/* Submit */}
+            <div className="post-submit-area">
+              {loading ? (
+                <Button
+                  disabled
+                  className="post-submit-button"
+                >
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait...
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="post-submit-button"
+                  disabled={companies.length === 0}
+                >
+                  Post New Job
+                </Button>
+              )}
             </div>
-            <div>
-              <Label>Experience Level</Label>
-              <Input
-                type='text'
-                name='experience'
-                value={input.experience}
-                onChange={changeEventHandler}
-                placeholder='Experience Details'
-                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-              />
-            </div>
-            <div>
-              <Label>No of Postion</Label>
-              <Input
-                type='number'
-                name='position'
-                value={input.position}
-                onChange={changeEventHandler}
-                placeholder='Vacancies'
-                className='focus-visible:ring-offset-0 focus-visible:ring-0 my-1'
-              />
-            </div>
-            {companies.length > 0 && (
-              <Select onValueChange={selectChangeHandler}>
-                <SelectTrigger className='w-[180px]'>
-                  <SelectValue placeholder='Select a Company' />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    {companies.map((company) => (
-                      <SelectItem
-                        key={company._id}
-                        value={company?.name?.toLowerCase()}
-                      >
-                        {company.name}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            )}
-          </div>
-          {loading ? (
-            <Button className='w-full my-4'>
-              {" "}
-              <Loader2 className='mr-2 h-4 w-4 animate-spin bg-[#000000] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125' />{" "}
-              Please wait{" "}
-            </Button>
-          ) : (
-            <Button
-              type='submit'
-              className='w-full my-4 bg-[#000000] text-white hover:bg-[#1b02f8] hover:text-white border-black transition-transform transform hover:scale-110 active:scale-125'
-            >
-              Post New Job
-            </Button>
-          )}
-          {companies.length === 0 && (
-            <p className='text-xs text-red-600 font-bold text-center my-3'>
-              *Please register a company first, before posting a jobs
-            </p>
-          )}
-        </form>
-      </div>
+          </form>
+        </div>
+      </main>
     </div>
   );
 };

@@ -1,54 +1,619 @@
+/* =========================================
+   JOBHUNT - CATEGORY SECTION
+   Animated Background + Card Animations
+========================================= */
 
-@media (max-width:750px) {
-   /* Carousel Container */
-.category-carousel {
-    margin-top: 4rem;
+.category-section {
+  position: relative;
+  padding: 25px 20px 70px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8faff 0%,
+      #ffffff 100%
+    );
 }
 
-/* Carousel */
-.carousel {
-    display: flex;
-    align-items: center;
-    margin-left: -13rem;
+
+/* =========================================
+   ANIMATED BACKGROUND
+========================================= */
+
+.category-section::before {
+  content: "";
+
+  position: absolute;
+  width: 420px;
+  height: 420px;
+
+  left: -180px;
+  top: 30px;
+
+  border-radius: 50%;
+
+  background: rgba(99, 102, 241, 0.08);
+
+  filter: blur(70px);
+
+  animation: categoryGlowOne 10s ease-in-out infinite alternate;
+
+  pointer-events: none;
 }
 
-.carousel .carousels{
-    width: 15rem;
+
+.category-section::after {
+  content: "";
+
+  position: absolute;
+  width: 380px;
+  height: 380px;
+
+  right: -160px;
+  bottom: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(124, 58, 237, 0.08);
+
+  filter: blur(75px);
+
+  animation: categoryGlowTwo 12s ease-in-out infinite alternate;
+
+  pointer-events: none;
 }
 
-/* Carousel Content */
-.carousel-content {
-    display: flex;
-    width: 37rem;
+
+@keyframes categoryGlowOne {
+
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(80px, 20px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(30px, 70px) scale(1.15);
+  }
+
 }
 
-/* Carousel Item */
-.carousel-item {
-    flex: 1;
-    height: 4rem;
+
+@keyframes categoryGlowTwo {
+
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-60px, -30px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-20px, -70px) scale(1.15);
+  }
+
 }
 
-/* Category Button */
-.category-button {
-    border-radius: 999px;
-    background-color: #5a49fb;
-    width: 13rem;
-    height: 4rem;
-    font-size: 1.25rem;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s, color 0.2s;
+
+/* =========================================
+   SMALL DOT TEXTURE
+========================================= */
+
+.category-animated {
+  background-image:
+    radial-gradient(
+      rgba(99, 102, 241, 0.12) 1px,
+      transparent 1px
+    );
+
+  background-size: 30px 30px;
 }
 
-.category-button:hover {
-    background-color: #3c36c0;
-    color: #f1f1f1;
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.category-container {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 1180px;
+
+  margin: auto;
 }
 
-.category-button:active {
-    transform: scale(1.1);
+
+/* =========================================
+   HEADER
+========================================= */
+
+.category-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: end;
+
+  margin-bottom: 25px;
+
+  animation: categoryHeaderIn 0.8s ease-out both;
 }
 
-    
+
+@keyframes categoryHeaderIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+.category-header p {
+  margin: 0 0 6px;
+
+  color: #6366f1;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  animation: categoryLabelIn 0.7s ease-out 0.1s both;
+}
+
+
+@keyframes categoryLabelIn {
+
+  from {
+    opacity: 0;
+    letter-spacing: 5px;
+  }
+
+  to {
+    opacity: 1;
+    letter-spacing: 1.5px;
+  }
+
+}
+
+
+.category-header h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 28px;
+
+  font-weight: 800;
+}
+
+
+.category-header h2 span {
+  color: #4f46e5;
+
+  background: linear-gradient(
+    90deg,
+    #4f46e5,
+    #7c3aed,
+    #2563eb,
+    #4f46e5
+  );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: categoryGradient 5s ease infinite;
+}
+
+
+@keyframes categoryGradient {
+
+  0% {
+    background-position: 0% center;
+  }
+
+  50% {
+    background-position: 100% center;
+  }
+
+  100% {
+    background-position: 0% center;
+  }
+
+}
+
+
+/* =========================================
+   VIEW ALL BUTTON
+========================================= */
+
+.view-all-jobs {
+  border: none;
+
+  background: transparent;
+
+  color: #4f46e5;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+
+.view-all-jobs:hover {
+  transform: translateX(5px);
+
+  color: #7c3aed;
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.category-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 14px;
+}
+
+
+/* =========================================
+   CATEGORY CARD
+========================================= */
+
+.category-card {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  width: 100%;
+
+  padding: 17px;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  backdrop-filter: blur(8px);
+
+  -webkit-backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(229, 231, 235, 0.9);
+
+  border-radius: 15px;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  animation: categoryCardIn 0.65s ease-out forwards;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+
+/* Individual entrance delay */
+
+.category-card:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.category-card:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.category-card:nth-child(3) {
+  animation-delay: 0.35s;
+}
+
+.category-card:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.category-card:nth-child(5) {
+  animation-delay: 0.55s;
+}
+
+.category-card:nth-child(6) {
+  animation-delay: 0.65s;
+}
+
+
+@keyframes categoryCardIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================
+   CARD HOVER
+========================================= */
+
+.category-card:hover {
+
+  border-color: #c7d2fe;
+
+  transform:
+    translateY(-6px)
+    scale(1.015);
+
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow:
+    0 18px 40px rgba(79, 70, 229, 0.12);
+}
+
+
+/* =========================================
+   CARD SHINE EFFECT
+========================================= */
+
+.category-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.7s ease;
+
+  pointer-events: none;
+}
+
+
+.category-card:hover::before {
+  left: 140%;
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.category-icon {
+
+  width: 43px;
+  height: 43px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #4f46e5;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eef2ff,
+      #ede9fe
+    );
+
+  border-radius: 12px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.category-card:hover .category-icon {
+
+  transform:
+    rotate(-6deg)
+    scale(1.1);
+
+  background:
+    linear-gradient(
+      135deg,
+      #e0e7ff,
+      #ddd6fe
+    );
+
+  box-shadow:
+    0 8px 18px rgba(79, 70, 229, 0.15);
+}
+
+
+/* =========================================
+   CARD TEXT
+========================================= */
+
+.category-card span:nth-child(2) {
+
+  color: #374151;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.category-card:hover span:nth-child(2) {
+
+  color: #4f46e5;
+
+  transform: translateX(2px);
+}
+
+
+/* =========================================
+   ARROW
+========================================= */
+
+.category-arrow {
+
+  margin-left: auto;
+
+  color: #9ca3af;
+
+  font-size: 18px;
+
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+
+.category-card:hover .category-arrow {
+
+  color: #4f46e5;
+
+  transform: translateX(6px);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .category-section {
+    padding: 30px 15px 55px;
+  }
+
+
+  .category-header {
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+
+  .category-header h2 {
+    font-size: 23px;
+  }
+
+
+  .view-all-jobs {
+    display: none;
+  }
+
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .category-card {
+    padding: 15px;
+  }
+
+}
+
+
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .category-section::before,
+  .category-section::after,
+  .category-header,
+  .category-header p,
+  .category-header h2 span,
+  .category-card {
+
+    animation: none !important;
+
+    opacity: 1 !important;
+
+  }
+
+
+  .category-card,
+  .category-icon,
+  .category-arrow,
+  .category-card span {
+
+    transition: none !important;
+  }
+
 }

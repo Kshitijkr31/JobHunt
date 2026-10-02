@@ -1,81 +1,245 @@
-import React
-, { useEffect, useState } 
-from 'react'
-import { RadioGroup, RadioGroupItem} from './ui/radio-group'
-import { Label } from './ui/label'
-import { useDispatch } from 'react-redux'
-import { setSearchedQuery } from '@/redux/jobSlice'
-import './FilterCard.css';
+import React from "react";
+import { MapPin, BriefcaseBusiness, IndianRupee, X } from "lucide-react";
+
+import "./FilterCard.css";
+
 const filterData = [
-    {
-        filterType: "Location",
-        array: ["Noida", "Bangalore", "Hyderabad", "Pune", "Mumbai"]
-    },
-    {
-        filterType: "Industry",
-        array: ["Frontend Developer", "Backend Developer", "IT", "Java Developer"]
-    },
-    {
-        filterType: "Salary",
-        array: ["0 LPA-2 LPA","2 LPA-5 LPA", "5 LPA or Above"]
-    },
-]
+  {
+    filterType: "Location",
+    icon: MapPin,
+    array: [
+      "Noida",
+      "Bangalore",
+      "Hyderabad",
+      "Pune",
+      "Mumbai",
+    ],
+  },
 
-const FilterCard = () => {
-    const [selectedValue, setSelectedValue] = useState('');
-    const [selectedSalary, setSelectedSalary] = useState('');
-    const dispatch = useDispatch();
+  {
+    filterType: "Industry",
+    icon: BriefcaseBusiness,
+    array: [
+      "Frontend Developer",
+      "Backend Developer",
+      "IT",
+      "Java Developer",
+    ],
+  },
 
-    const changeHandler = (value) => {
-        setSelectedValue(value);
+  {
+    filterType: "Salary",
+    icon: IndianRupee,
+    array: [
+      "0 LPA-2 LPA",
+      "2 LPA-5 LPA",
+      "5 LPA or Above",
+    ],
+  },
+];
+
+const FilterCard = ({
+  selectedLocation,
+  selectedIndustry,
+  selectedSalary,
+
+  setSelectedLocation,
+  setSelectedIndustry,
+  setSelectedSalary,
+
+  onFilterSelect,
+  onClearFilters,
+}) => {
+
+  /*
+   * -----------------------------------------
+   * HANDLE FILTER CLICK
+   * -----------------------------------------
+   *
+   * Clicking selected option again removes it.
+   */
+  const handleFilterClick = (filterType, value) => {
+
+    if (filterType === "Location") {
+      setSelectedLocation(
+        selectedLocation === value ? "" : value
+      );
     }
 
-    const salaryChangeHandler = (value) => {
-        setSelectedSalary(value);
-    };
+    if (filterType === "Industry") {
+      setSelectedIndustry(
+        selectedIndustry === value ? "" : value
+      );
+    }
 
-    useEffect(()=>{
-        dispatch(setSearchedQuery(selectedValue));
-    }, [selectedValue, dispatch]);
+    if (filterType === "Salary") {
+      setSelectedSalary(
+        selectedSalary === value ? "" : value
+      );
+    }
 
-    return (
-        <div className='filter-main w-[80%] bg-white p-3 rounded-md ml-[5rem] mt-20'>
-             { <h1 className='font-bold text-lg'>Filter Jobs</h1> }
-            <hr className='mt-3' />
-            <RadioGroup value={selectedValue} onValueChange={changeHandler}>
-            {
-                    filterData.map((data, index) => (
-                        <div key={index}>
-                            <h1 className='font-bold text-lg'>{data.filterType}</h1>
-                            {
-                            data.filterType === 'Salary' ? (
-                                data.array.map((item, idx) => {
-                                    const itemId = `salary${index}-${idx}`;
-                                    return (
-                                        <div className='flex items-center space-x-2 my-2'  key={itemId}>
-                                            <RadioGroupItem value={item} id={itemId} onChange={() => salaryChangeHandler(item)}/>
-                                            <Label htmlFor={itemId}>{item}</Label>
-                                        </div>
-                                    );
-                                })
-                           ) : (
-                            data.array.map((item, idx) => {
-                                const itemId = `id${index}-${idx}`;
-                                return (
-                                    <div className='flex items-center space-x-2 my-2' key={itemId}>
-                                        <RadioGroupItem className='btn-itm' value={item} id={itemId} />
-                                        <Label htmlFor={itemId}>{item}</Label>
-                                    </div>
-                                );
-                            })
-                        )}
-                    </div>
-                ))}
-                    
-                  </RadioGroup>
+    if (onFilterSelect) {
+      onFilterSelect();
+    }
+  };
+
+
+  /*
+   * -----------------------------------------
+   * CHECK ACTIVE FILTER
+   * -----------------------------------------
+   */
+  const isSelected = (filterType, value) => {
+
+    if (filterType === "Location") {
+      return selectedLocation === value;
+    }
+
+    if (filterType === "Industry") {
+      return selectedIndustry === value;
+    }
+
+    if (filterType === "Salary") {
+      return selectedSalary === value;
+    }
+
+    return false;
+  };
+
+
+  const hasAnyFilter =
+    selectedLocation ||
+    selectedIndustry ||
+    selectedSalary;
+
+
+  return (
+    <div className="filter-main">
+
+      {/* -----------------------------------------
+          HEADER
+      ----------------------------------------- */}
+      <div className="filter-header">
+
+        <div>
+          <h1>
+            Filter Jobs
+          </h1>
+
+          <p>
+            Find jobs that match your preferences.
+          </p>
         </div>
-    )
-}
+
+        {hasAnyFilter && (
+          <button
+            className="filter-clear-icon"
+            onClick={onClearFilters}
+            title="Clear filters"
+          >
+            <X size={17} />
+          </button>
+        )}
+
+      </div>
 
 
-export default FilterCard
+      <div className="filter-divider" />
+
+
+      {/* -----------------------------------------
+          FILTER GROUPS
+      ----------------------------------------- */}
+      {filterData.map((data) => {
+
+        const Icon = data.icon;
+
+        return (
+          <div
+            className="filter-group"
+            key={data.filterType}
+          >
+
+            {/* GROUP TITLE */}
+            <div className="filter-group-title">
+
+              <Icon size={17} />
+
+              <span>
+                {data.filterType}
+              </span>
+
+            </div>
+
+
+            {/* OPTIONS */}
+            <div className="filter-options">
+
+              {data.array.map((item) => {
+
+                const active = isSelected(
+                  data.filterType,
+                  item
+                );
+
+                return (
+                  <button
+                    type="button"
+                    key={item}
+                    className={`filter-option ${
+                      active ? "filter-option-active" : ""
+                    }`}
+                    onClick={() =>
+                      handleFilterClick(
+                        data.filterType,
+                        item
+                      )
+                    }
+                  >
+
+                    <span
+                      className={`filter-radio ${
+                        active
+                          ? "filter-radio-active"
+                          : ""
+                      }`}
+                    >
+                      {active && (
+                        <span className="filter-radio-dot" />
+                      )}
+                    </span>
+
+                    <span>
+                      {item}
+                    </span>
+
+                  </button>
+                );
+
+              })}
+
+            </div>
+
+          </div>
+        );
+      })}
+
+
+      {/* -----------------------------------------
+          CLEAR ALL
+      ----------------------------------------- */}
+      {hasAnyFilter && (
+        <button
+          type="button"
+          className="clear-all-filters"
+          onClick={onClearFilters}
+        >
+          Clear All Filters
+        </button>
+      )}
+
+    </div>
+  );
+};
+
+export default FilterCard;

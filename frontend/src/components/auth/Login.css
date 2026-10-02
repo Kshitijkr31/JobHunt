@@ -1,40 +1,44 @@
-/* Styles for tablets and below */
-@media (max-width: 750px) {
-    
-  :root .login-main{
-    margin-left: 22rem;
-    width: 0rem;
+/* =========================================
+   LOGIN PAGE
+========================================= */
+
+.login-card {
+  max-width: 1050px;
+}
+
+
+/* =========================================
+   LOGIN VISUAL
+========================================= */
+
+.login-visual {
+  background:
+    linear-gradient(
+      145deg,
+      #4c1d95 0%,
+      #6d28d9 48%,
+      #7c3aed 100%
+    );
+}
+
+
+/* =========================================
+   LOGIN RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .login-card {
+    grid-template-columns: 1fr;
   }
 
-    .login-main .login-form{
-        margin-left: -18rem;
-        width: 25rem;
-}
-
-.login-form .submit-signup{
-    margin-left: 15rem;
 }
 
 
+@media (max-width: 600px) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .login-card {
+    width: 100%;
+  }
 
 }
-     

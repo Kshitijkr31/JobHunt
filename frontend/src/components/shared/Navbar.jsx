@@ -2,24 +2,35 @@ import React from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import { Avatar, AvatarImage } from "../ui/avatar";
-import { LogOutIcon, User2 } from "lucide-react";
+
+import {
+  BriefcaseBusiness,
+  Building2,
+  LogOutIcon,
+  User2,
+  Bookmark,
+  BookmarkCheck,
+} from "lucide-react";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { setUser } from "@/redux/authSlice";
 import { toast } from "sonner";
-import './Navbar.css';
+import "./Navbar.css";
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const logoutHandler = async () => {
     try {
       const res = await axios.get(`${USER_API_END_POINT}/logout`, {
         withCredentials: true,
       });
+
       if (res.data.success) {
         dispatch(setUser(null));
         navigate("/");
@@ -27,124 +38,144 @@ const Navbar = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+
+      toast.error(error?.response?.data?.message || "Logout failed");
     }
   };
-  return (
-    <div className='bg-white '>
-      <div className='fixed navbar top-0 mx-auto h-16  w-full bg-white shadow-md py-5 flex items-center  px-10  z-50'  >
-        <div>
-        
-          <h1  className=' heading-main text-2xl font-bold ml-20'>
-            Job<span className='text-[#1b02f8]'>Hunt</span>
-          </h1>
-          
-        </div>
-        <div className='  flex items-center gap-12 sm:gap-12 '>
-          <ul className='flex main-gap  items-center sm:gap-5   gap-4 font-bold '>
-            {user && user.role === "recruiter" ? (
-              <>
-                <li className=' li-login transition-transform transform hover:scale-110 active:scale-125 ml-[60rem]'>
-                  <Link to='/admin/companies' className='text-black font-bold hover:text-[#1b02f8] '>Companies</Link>
-                </li>
-                <li className=' transition-transform transform hover:scale-110 active:scale-125 '>
-                  <Link to='/admin/jobs'className='text-black font-bold hover:text-[#1b02f8] ' >Jobs</Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className=' transition-transform transform hover:scale-110 active:scale-125 ml-[53rem]' >
-                  <Link
-                    to='/'
-                    className='text-black font-bold hover:text-[#1b02f8] '
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li className='transition-transform transform hover:scale-110 active:scale-125'>
-                  <Link
-                    to='/jobs'
-                    className='text-black font-bold hover:text-[#1b02f8]'
-                  >
-                    Jobs
-                  </Link>
-                </li>
-                <li className=' transition-transform transform hover:scale-110 active:scale-125'>
-                  <Link
-                    to='/browse'
-                    className='text-black font-bold hover:text-[#1b02f8]'
-                  >
-                    Browse
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
 
-          {!user ? (
-            <div className=' flex items-center gap-2'>
-              <Link to='/login'>
-                <Button
-                  variant='outline'
-                  className='bg-[#f5f8f7] hover:bg-[#c2dfde] login-btn text-black border-black transition-transform transform hover:scale-110 active:scale-125'
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link to='/signup'>
-                <Button
-                  variant='outline'
-                  className='bg-[#4b53c5] hover:bg-[#3edcca] signup-btn text-white transition-transform transform hover:scale-110 active:scale-125'
-                >
-                  Signup
-                </Button>
-              </Link>
-            </div>
+  return (
+    <header className='modern-navbar'>
+      <div className='navbar-inner'>
+        {/* ================================
+            LOGO
+        ================================= */}
+        <Link to='/' className='brand'>
+          <div className='brand-icon'>
+            <BriefcaseBusiness size={19} />
+          </div>
+
+          <span>
+            Job<span>Hunt</span>
+          </span>
+        </Link>
+
+        {/* ================================
+            NAVIGATION
+        ================================= */}
+        <nav className='nav-links'>
+          {user?.role === "recruiter" ? (
+            <>
+              <Link to='/admin/companies'>Companies</Link>
+
+              <Link to='/admin/jobs'>Jobs</Link>
+            </>
           ) : (
-            <Popover >
-              <PopoverTrigger asChild>
-                <Avatar className='photo-main cursor-pointer transition-transform transform hover:scale-110 active:scale-125'>
+            <>
+              <Link to='/'>Home</Link>
+
+              <Link to='/jobs'>Jobs</Link>
+
+              <Link to='/browse'>Browse</Link>
+            </>
+          )}
+        </nav>
+
+        {/* ================================
+            RIGHT SIDE
+        ================================= */}
+        {!user ? (
+          <div className='auth-buttons'>
+            <Link to='/login'>
+              <Button variant='ghost' className='login-button'>
+                Login
+              </Button>
+            </Link>
+
+            <Link to='/signup'>
+              <Button className='signup-button'>Get Started</Button>
+            </Link>
+          </div>
+        ) : (
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className='profile-button'>
+                <Avatar>
                   <AvatarImage
                     src={user?.profile?.profilePhoto}
-                    alt='@shadcn'
+                    alt='Profile'
                   />
                 </Avatar>
-              </PopoverTrigger>
-              <PopoverContent className='small-pop w-80 font-normal h-30 my-2 '>
-                <div className=''>
-                  <Avatar className='cursor-pointer'>
-                    <AvatarImage
-                      src={user?.profile?.profilePhoto}
-                      alt='@shadcn'
-                    />
-                  </Avatar>
-                  <div>
-                    <h4 className='font-medium'>{user?.fullname}</h4>
-                    <p className='text-sm text-muted-foreground'>
-                      {user?.profile?.bio}
-                    </p>
-                  </div>
-                  <div className='flex flex-col my-2 text-gray-600'>
-                    {user && user.role === "student" && (
-                      <div className='flex w-fit items-center gap-2 cursor-pointer'>
-                        <User2 />
-                        <Link to='/profile'>View Profile</Link>
-                      </div>
-                    )}
-                    <div className='flex w-fit items-center gap-2 my-2 cursor-pointer '>
-                      <LogOutIcon />
-                      <Button onClick={logoutHandler} variant='link'className='transition-transform transform hover:scale-110 active:scale-125'>
-                        Logout
-                      </Button>
-                    </div>
-                  </div>
+              </button>
+            </PopoverTrigger>
+
+            <PopoverContent className='profile-popover'>
+              {/* Profile Header */}
+              <div className='profile-info'>
+                <Avatar>
+                  <AvatarImage
+                    src={user?.profile?.profilePhoto}
+                    alt='Profile'
+                  />
+                </Avatar>
+
+                <div>
+                  <h4>{user?.fullname}</h4>
+                  <p>
+                    {user?.role === "recruiter"
+                      ? "Recruiter"
+                      : user?.profile?.bio || "Job seeker"}
+                  </p>
                 </div>
-              </PopoverContent>
-            </Popover>
-          )}
-        </div>
+              </div>
+
+              {/* Recruiter Options */}
+              {user?.role === "recruiter" && (
+                <>
+                  <Link to='/admin/companies' className='profile-option'>
+                    <Building2 size={18} />
+                    Companies
+                  </Link>
+
+                  <Link to='/admin/jobs' className='profile-option'>
+                    <BriefcaseBusiness size={18} />
+                    Manage Jobs
+                  </Link>
+                </>
+              )}
+
+              {/* Student Options */}
+              {user?.role === "student" && (
+                <>
+                  <Link to='/profile' className='profile-option'>
+                    <User2 size={18} />
+                    View Profile
+                  </Link>
+
+                  <Link to='/bookmarks' className='profile-option'>
+                    <Bookmark size={18} />
+                    Bookmarked Jobs
+                  </Link>
+
+                  <Link to='/saved-jobs' className='profile-option'>
+                    <BookmarkCheck size={18} />
+                    Saved Jobs
+                  </Link>
+                </>
+              )}
+
+              {/* Logout */}
+              <button
+                onClick={logoutHandler}
+                className='profile-option logout-option'
+              >
+                <LogOutIcon size={18} />
+                Logout
+              </button>
+            </PopoverContent>
+          </Popover>
+        )}
       </div>
-    </div>
+    </header>
   );
 };
 

@@ -8,13 +8,13 @@ import userRoute from "./routes/user.route.js";
 import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
-import path from "path";
+// import path from "path";
 
 dotenv.config({});
 
 const app = express();
 
-const _dirname = path.resolve();
+// const _dirname = path.resolve();
 
 
 app.get("/home", (req, res) => {
@@ -32,7 +32,7 @@ app.use(cookieParser());
 // Set up CORS
 const corsOptions = {
     // origin: process.env.FRONTEND_URL || "http://localhost:5173", // Update if deployed
-    origin: "process.env.FRONTEND_URL" || "http://localhost:5173", // Update if deployed
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Update if deployed
     credentials: true,
 };
 app.use(cors(corsOptions));
@@ -45,10 +45,10 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-app.use(express.static(path.resolve(_dirname, 'frontend', 'dist')));
-app.get('*', (_,res)=>{
-    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
-})
+// app.use(express.static(path.resolve(_dirname, 'frontend', 'dist')));
+// app.get('*', (_,res)=>{
+//     res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+// })
 
 // Start Server
 app.listen(PORT, () => {

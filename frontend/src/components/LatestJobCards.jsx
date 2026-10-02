@@ -1,43 +1,87 @@
 import React from "react";
 import { Badge } from "./ui/badge";
-import { Label } from "./ui/label";
-import { useNavigate } from 'react-router-dom'
 import { Avatar, AvatarImage } from "./ui/avatar";
-import './LatestJobCards.css';
+import { MapPin, Briefcase, ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import "./LatestJobCards.css";
 
 const LatestJobCards = ({ job }) => {
+
   const navigate = useNavigate();
+
   return (
-    <div
-      onClick={()=> navigate(`/description/${job._id}`)}
-      className=' p-5 rounded-md shadow-xl bg-white border border-gray-100 cursor-pointer ml-24 w-96 relative' id="carddesc">
-                <div className='p-6 logo-img' variant='outline' size='icon'>
-                <Avatar className='ml-[14.25rem]  w-[5rem]'>
-                  <AvatarImage
-                    src=  {job?.company?.logo}
-                  />
-                </Avatar>
-                </div> 
-      <div className=" job-detail mt-[-3.5rem]">
-        <h1 className='text-xl font-bold'>{job?.company?.name}</h1>
-        <p className='text-sm  text-gray-500'>{job?.company?.location}</p>
+    <article
+      onClick={() => navigate(`/description/${job._id}`)}
+      className="modern-job-card"
+    >
+
+      {/* Top */}
+
+      <div className="job-card-top">
+
+        <div className="company-logo">
+
+          <Avatar>
+            <AvatarImage
+              src={job?.company?.logo}
+              alt={job?.company?.name}
+            />
+          </Avatar>
+
+        </div>
+
+        <button className="job-arrow">
+          <ArrowUpRight size={18} />
+        </button>
+
       </div>
-      <div>
-        <h1 className='job-detail2 font-bold text-lg my-3'>{job?.title}</h1>
-        <p className='text-sm text-gray-600'>{job?.description}</p>
+
+      {/* Company */}
+
+      <div className="company-name">
+        {job?.company?.name}
       </div>
-      <div className='badge-list flex items-center gap-2 mt-4 absolute bottom-0 left-0  bg-white p-2'>
-        <Badge className='text-[#1b02f8] font-bold' variant='ghost'>
-          <Label className='text-xs font-bold '>Vacancy- </Label>{job?.position}
-        </Badge>
-        <Badge className='text-[#F83002] font-bold' variant='ghost'>
+
+      <div className="job-location">
+
+        <MapPin size={14} />
+
+        {job?.company?.location || "India"}
+
+      </div>
+
+      {/* Job title */}
+
+      <h3 className="job-title">
+        {job?.title}
+      </h3>
+
+      {/* Description */}
+
+      <p className="job-description">
+        {job?.description}
+      </p>
+
+      {/* Tags */}
+
+      <div className="job-tags">
+
+        <Badge className="job-tag blue-tag">
+          <Briefcase size={12} />
           {job?.jobType}
         </Badge>
-        <Badge className='text-[#6b2599] font-bold' variant='ghost'>
+
+        <Badge className="job-tag">
+          {job?.position} openings
+        </Badge>
+
+        <Badge className="job-tag salary-tag">
           {job?.salary}
         </Badge>
+
       </div>
-    </div>
+
+    </article>
   );
 };
 

@@ -1,44 +1,90 @@
+import React, { useEffect, useState } from "react";
+import Navbar from "../shared/Navbar";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import AdminJobsTable from "./AdminJobsTable";
+import useGetAllAdminJobs from "@/hooks/useGetAllAdminJobs";
+import { setSearchJobByText } from "@/redux/jobSlice";
+import { BriefcaseBusiness, Plus, Search } from "lucide-react";
+import "./AdminJobs.css";
 
-import React, { useEffect, useState } from 'react'
-import Navbar from '../shared/Navbar'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button' 
-import { useNavigate } from 'react-router-dom' 
-import { useDispatch } from 'react-redux' 
-import AdminJobsTable from './AdminJobsTable'
-import useGetAllAdminJobs from '@/hooks/useGetAllAdminJobs'
-import { setSearchJobByText } from '@/redux/jobSlice'
-import './AdminJobs.css';
 const AdminJobs = () => {
-    useGetAllAdminJobs();
-    const [input, setInput] = useState("");
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(setSearchJobByText(input));
-    }, [input]);
-    return (
-        <div>
-            <Navbar />
-            <div className='comp-job-create w-full mx-auto my-5 ml-[10rem]'>
-                <div className='compp flex items-center  my-5 mt-[6rem] '>
-                    <Input
-                        className="w-fit "
-                        placeholder="Filter by name"
-                        onChange={(e) => setInput(e.target.value)}
-                    />
-                    <Button 
-                    onClick={() => navigate("/admin/jobs/create")}
-                    variant='outline'
-                    className='bg-[#4b53c5] btn hover:bg-[#3edcca] ml-[52rem] text-white transition-transform transform hover:scale-110 active:scale-125'
-                 >New Jobs</Button>
-                </div>
-                <AdminJobsTable/>
+  useGetAllAdminJobs();
+
+  const [input, setInput] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setSearchJobByText(input));
+  }, [input, dispatch]);
+
+  return (
+    <div className="admin-jobs-page">
+      <Navbar />
+
+      <main className="admin-jobs-container">
+
+        {/* Page Header */}
+        <section className="admin-jobs-header">
+
+          <div className="admin-jobs-title-section">
+            <div className="admin-jobs-icon">
+              <BriefcaseBusiness size={30} />
             </div>
-        </div>
-    )
-}
 
-export default AdminJobs
+            <div>
+              <h1>Manage Jobs</h1>
+              <p>
+                Create, manage and organize your posted job opportunities
+              </p>
+            </div>
+          </div>
 
+          <Button
+            onClick={() => navigate("/admin/jobs/create")}
+            className="new-job-btn"
+          >
+            <Plus size={18} />
+            Post New Job
+          </Button>
+
+        </section>
+
+        {/* Search */}
+        <section className="admin-jobs-search">
+          <Search size={20} className="search-icon" />
+
+          <Input
+            value={input}
+            placeholder="Search jobs by company or role..."
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </section>
+
+        {/* Jobs Table Card */}
+        <section className="jobs-table-card">
+
+          <div className="jobs-table-header">
+            <div>
+              <h2>Posted Jobs</h2>
+              <p>
+                View and manage all jobs posted by your companies
+              </p>
+            </div>
+          </div>
+
+          <div className="jobs-table-content">
+            <AdminJobsTable />
+          </div>
+
+        </section>
+
+      </main>
+    </div>
+  );
+};
+
+export default AdminJobs;

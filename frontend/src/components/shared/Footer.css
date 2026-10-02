@@ -1,34 +1,344 @@
-/* Styles for tablets and below */
+/* =========================================
+   MODERN JOBHUNT FOOTER
+========================================= */
+
+.footer-mainn {
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+
+  color: white;
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(99, 102, 241, 0.35),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(124, 58, 237, 0.30),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #0f172a 0%,
+      #172554 45%,
+      #312e81 100%
+    );
+
+  padding: 55px 30px 30px;
+}
+
+
+/* =========================================
+   DOT TEXTURE
+========================================= */
+
+.footer-mainn::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.15) 1px,
+      transparent 1px
+    );
+
+  background-size: 27px 27px;
+
+  opacity: 0.18;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   ANIMATED GLOW
+========================================= */
+
+.footer-mainn::after {
+  content: "";
+
+  position: absolute;
+
+  width: 380px;
+  height: 380px;
+
+  top: -190px;
+  right: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(129, 140, 248, 0.18);
+
+  filter: blur(80px);
+
+  pointer-events: none;
+
+  animation: footerGlow 9s ease-in-out infinite alternate;
+}
+
+
+@keyframes footerGlow {
+
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-70px, 50px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-20px, 100px) scale(0.95);
+  }
+
+}
+
+
+/* =========================================
+   CONTENT ABOVE BACKGROUND
+========================================= */
+
+.footer-mainn > *,
+.footer-main,
+.footer-head,
+.footer-p,
+.footer-icons {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================
+   FOOTER HEADING
+========================================= */
+
+.footer-head {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 25px rgba(129, 140, 248, 0.25);
+
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.footer-head:hover {
+  transform: translateY(-2px);
+
+  color: #e0e7ff;
+}
+
+
+/* =========================================
+   FOOTER DESCRIPTION
+========================================= */
+
+.footer-p {
+  color: #cbd5e1;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   SOCIAL ICONS
+========================================= */
+
+.footer-icons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.footer-icons > * {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(8px);
+
+  color: #e0e7ff;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.footer-icons > *:hover {
+  transform: translateY(-5px) scale(1.08);
+
+  background: rgba(129, 140, 248, 0.20);
+
+  border-color: rgba(165, 180, 252, 0.5);
+
+  box-shadow:
+    0 10px 25px rgba(99, 102, 241, 0.28);
+}
+
+
+/* =========================================
+   FOOTER MAIN CONTENT
+========================================= */
+
+.footer-main {
+  width: 100%;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
 @media (max-width: 750px) {
-:root .footer-mainn{
-    width: 26rem;
+
+  .footer-mainn {
+    width: 100%;
+
     margin-left: 0;
+
+    padding: 40px 20px 25px;
+
+    text-align: center;
+  }
+
+
+  .footer-mainn .footer-main {
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+
+  .footer-head {
+    width: 100%;
+
+    margin: 0 0 10px;
+
+    font-size: 14px;
+
+    text-align: center;
+  }
+
+
+  .footer-p {
+    width: 100%;
+
+    max-width: 340px;
+
+    margin: 0 auto;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    text-align: center;
+  }
+
+
+  .footer-icons {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 22px auto 0;
+  }
+
+
+  .footer-icons > * {
+    width: 36px;
+    height: 36px;
+  }
+
+
+  /* Smaller background texture */
+
+  .footer-mainn::before {
+    background-size: 22px 22px;
+
+    opacity: 0.14;
+  }
+
+
+  /* Smaller glow on mobile */
+
+  .footer-mainn::after {
+    width: 280px;
+    height: 280px;
+
+    top: -140px;
+    right: -100px;
+  }
+
 }
 
- .footer-mainn .footer-main{
-    margin-left: -40rem;
- }
- 
 
- .footer-head{
-    width: 24rem;
-    margin-top: -1rem;
-    margin-left: 38rem;
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 400px) {
+
+  .footer-mainn {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .footer-head {
     font-size: 13px;
- }
+  }
 
-.footer-p{
-    margin-left: 39rem;
+  .footer-p {
+    font-size: 11px;
+  }
+
+  .footer-icons {
+    gap: 9px;
+  }
+
 }
 
-.footer-icons{
-    margin-left: 1rem;
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .footer-mainn::after,
+  .footer-head,
+  .footer-icons > * {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
 }
-
-
-
-
-
-
- }
- 

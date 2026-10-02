@@ -1,48 +1,696 @@
-/* Styles for tablets and below */
-@media (max-width: 750px) {
- 
-:root .jdh1{
-        margin-left: 2rem;
-        margin-top: -30px;
-        border: none;
-}
+/* =========================================================
+   JOB DESCRIPTION PAGE
+========================================================= */
 
-.btn{
-        margin-left: 3rem;
-        margin-top: 2rem;
+.job-description-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  color: #111827;
+  padding-bottom: 60px;
 }
 
 
-:root .desc-main{
-        margin-left: 2rem;
-        width: 23rem;
+/* =========================================================
+   TOP NAVIGATION
+========================================================= */
+
+.job-detail-navbar {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 18px 0;
 }
 
-:root .btn-app{
-        margin-left: 10rem;
+.job-detail-navbar .back-button {
+  margin-left: max(
+    24px,
+    calc((100% - 1180px) / 2)
+  );
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: #111827;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 10px 17px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
 }
 
-:root .descrip{
-        width: 20rem;
-        margin-left: 2rem;
-    
-}
-
-.descrip h1{
-margin-top: 18px;
+.job-detail-navbar
+  .back-button:hover {
+  background: #7c3aed;
+  color: #ffffff;
+  transform: translateX(-2px);
 }
 
 
-.edu-qual ul{
-        margin-top: 12px;
-}
-.edu-qual div{
-        margin-top: 10px;
-}
-.edu-qual li{
-        margin-top: 3px;
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.job-detail-container {
+  width: min(
+    calc(100% - 48px),
+    1180px
+  );
+
+  margin: 35px auto 0;
 }
 
 
+/* =========================================================
+   JOB HEADER
+========================================================= */
+
+.job-detail-header {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  padding: 35px 38px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+
+  box-shadow:
+    0 4px 18px
+    rgba(15, 23, 42, 0.05);
 }
-         
+
+
+.job-header-left {
+  min-width: 0;
+}
+
+
+.job-detail-label {
+  margin: 0 0 10px;
+
+  color: #7c3aed;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+
+.job-detail-title {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 34px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  word-break: break-word;
+}
+
+
+.job-detail-company {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 12px;
+
+  color: #64748b;
+
+  font-size: 15px;
+}
+
+
+.job-detail-company strong {
+  color: #334155;
+}
+
+
+.job-meta {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.detail-badge {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 6px;
+
+  border-radius: 999px;
+
+  padding: 7px 13px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.position-badge {
+  color: #2563eb;
+}
+
+
+.type-badge {
+  color: #f04438;
+}
+
+
+.salary-badge {
+  color: #7c3aed;
+}
+
+
+/* =========================================================
+   APPLY SECTION
+========================================================= */
+
+.apply-section {
+  flex-shrink: 0;
+}
+
+
+.apply-button {
+  min-width: 145px;
+  height: 46px;
+
+  padding: 0 24px;
+
+  border-radius: 9px;
+
+  background: #7c3aed !important;
+  color: #ffffff !important;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  border: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.apply-button:hover {
+  background: #6d28d9 !important;
+
+  transform: translateY(-2px);
+}
+
+
+.apply-button.already-applied {
+  background: #64748b !important;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   CONTENT LAYOUT
+========================================================= */
+
+.job-detail-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    330px;
+
+  gap: 26px;
+
+  margin-top: 26px;
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.job-detail-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 22px;
+}
+
+
+/* =========================================================
+   DETAIL CARD
+========================================================= */
+
+.detail-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  padding: 28px 30px;
+
+  box-shadow:
+    0 3px 14px
+    rgba(15, 23, 42, 0.04);
+}
+
+
+.detail-section-title {
+  margin: 0 0 20px;
+
+  color: #111827;
+
+  font-size: 21px;
+  font-weight: 750;
+
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+.description-text {
+  margin: 0;
+
+  color: #475569;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+
+  white-space: pre-line;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   REQUIREMENTS
+========================================================= */
+
+.requirements-list {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+
+.requirements-list li {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 11px;
+
+  color: #475569;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+
+
+.bullet {
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  margin-top: 1px;
+
+  border-radius: 50%;
+
+  background: #f3e8ff;
+
+  color: #7c3aed;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   QUALIFICATIONS
+========================================================= */
+
+.qualifications {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+
+.qualification-item {
+  padding: 17px 18px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+}
+
+
+.qualification-item h3 {
+  margin: 0 0 10px;
+
+  color: #1e293b;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+
+.qualification-item ul {
+  margin: 0;
+
+  padding-left: 20px;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+.qualification-item li {
+  margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.job-detail-sidebar {
+  position: sticky;
+
+  top: 25px;
+}
+
+
+.sidebar-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  padding: 25px;
+
+  box-shadow:
+    0 3px 14px
+    rgba(15, 23, 42, 0.04);
+}
+
+
+.sidebar-card h2 {
+  margin: 0 0 22px;
+
+  color: #111827;
+
+  font-size: 20px;
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   OVERVIEW ITEMS
+========================================================= */
+
+.overview-item {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 13px;
+
+  padding: 16px 0;
+
+  border-bottom: 1px solid #eef2f7;
+}
+
+
+.overview-item:last-child {
+  border-bottom: none;
+
+  padding-bottom: 0;
+}
+
+
+.overview-icon {
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #f3e8ff;
+
+  color: #7c3aed;
+}
+
+
+.overview-item div:last-child {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  min-width: 0;
+}
+
+
+.overview-item span {
+  color: #94a3b8;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+
+.overview-item strong {
+  color: #334155;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.job-description-loading {
+  min-height: 70vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  color: #64748b;
+
+  font-size: 15px;
+}
+
+
+.loading-spinner {
+  width: 34px;
+  height: 34px;
+
+  border: 4px solid #e9d5ff;
+
+  border-top-color: #7c3aed;
+
+  border-radius: 50%;
+
+  animation:
+    job-spin 0.8s linear infinite;
+}
+
+
+@keyframes job-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .job-detail-container {
+    width: calc(100% - 32px);
+
+    margin-top: 25px;
+  }
+
+
+  .job-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+
+  .job-detail-sidebar {
+    position: static;
+  }
+
+
+  .job-detail-header {
+    padding: 28px;
+  }
+
+
+  .job-detail-title {
+    font-size: 29px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .job-detail-navbar {
+    padding: 14px 16px;
+  }
+
+
+  .job-detail-navbar
+    .back-button {
+    margin-left: 0;
+  }
+
+
+  .job-detail-container {
+    width: calc(100% - 24px);
+
+    margin-top: 18px;
+  }
+
+
+  .job-detail-header {
+    flex-direction: column;
+
+    padding: 23px 20px;
+
+    border-radius: 12px;
+  }
+
+
+  .job-detail-title {
+    font-size: 25px;
+  }
+
+
+  .job-detail-company {
+    font-size: 14px;
+  }
+
+
+  .job-meta {
+    gap: 7px;
+  }
+
+
+  .apply-section {
+    width: 100%;
+  }
+
+
+  .apply-button {
+    width: 100%;
+  }
+
+
+  .detail-card {
+    padding: 22px 19px;
+  }
+
+
+  .detail-section-title {
+    font-size: 19px;
+  }
+
+
+  .description-text,
+  .requirements-list li {
+    font-size: 14px;
+  }
+
+
+  .sidebar-card {
+    padding: 21px 19px;
+  }
+
+}

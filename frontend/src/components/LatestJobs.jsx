@@ -1,30 +1,81 @@
 import React from "react";
 import LatestJobCards from "./LatestJobCards";
 import { useSelector } from "react-redux";
-import './LatestJobs.css';
-// const randomJobs = [1, 2, 3, 4, 5, 6];
+import { ArrowRight, BriefcaseBusiness } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import "./LatestJobs.css";
 
 const LatestJobs = () => {
+
   const { allJobs } = useSelector((store) => store.job);
 
+  const navigate = useNavigate();
+
   return (
-    <div className='latest-jobs-container max-w-7xl mx-auto my-8 mt-48px ml-[55px]'>
-      <h1 className='latest-jobs-title text-4xl font-bold'>
-        <span className='text-[#1b02f8] ml-[70px]'>Latest & Top </span> Job Openings
-      </h1>
-      <div className='latest-jobs-grid  '>
-        {
-            // randomJobs.map((item,index)=> <LatestJobCards/>)
-          allJobs.length <= 0 ? (
-            <span>No Job Available</span>
-          ) : (
-            allJobs
+    <section className="latest-jobs-section">
+
+      <div className="latest-jobs-container">
+
+        {/* Header */}
+
+        <div className="latest-jobs-header">
+
+          <div>
+
+            <div className="latest-label">
+              <BriefcaseBusiness size={15} />
+              FRESH OPPORTUNITIES
+            </div>
+
+            <h2>
+              Latest & Top{" "}
+              <span>Job Openings</span>
+            </h2>
+
+            <p>
+              Explore the newest opportunities from companies hiring right now.
+            </p>
+
+          </div>
+
+          <button
+            onClick={() => navigate("/jobs")}
+            className="latest-view-button"
+          >
+            View all jobs
+            <ArrowRight size={17} />
+          </button>
+
+        </div>
+
+        {/* Jobs */}
+
+        {allJobs?.length <= 0 ? (
+
+          <div className="no-jobs">
+            No jobs available right now.
+          </div>
+
+        ) : (
+
+          <div className="latest-jobs-grid">
+
+            {allJobs
               ?.slice(0, 6)
-              .map((job) => <LatestJobCards key={job._id} job={job} />)
-          )
-        }
+              .map((job) => (
+                <LatestJobCards
+                  key={job._id}
+                  job={job}
+                />
+              ))}
+
+          </div>
+
+        )}
+
       </div>
-    </div>
+
+    </section>
   );
 };
 

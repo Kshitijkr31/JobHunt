@@ -1,70 +1,260 @@
-/* Styles for tablets and below */
-@media (max-width: 750px) {
- 
- :root .applied-main{
-    margin-left: 0;
-        text-align: center;
- }
+/* =========================================================
+   APPLICATION TABLE
+========================================================= */
 
-:root .table-main{
-    width: 39%;
-    margin-left: 34rem;
-        overflow-x: auto;
-}
-
-:root .head-main{
-    display: table-cell;
-    font-size: 12px;
+.applications-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
 }
 
 
-:root .applied-right{
-    display: inline-block;
-    white-space: nowrap;
+/* =========================================================
+   TABLE
+========================================================= */
+
+.applications-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
 }
 
-.head-main th,
-.head-main td {
-    padding: 8px 10px; /* Reduce column padding */
-    text-align: left;
+.applications-table th {
+  height: 58px;
+
+  background: #fafafa;
+
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Reduce spacing between columns */
-.head-main th:first-child,
-.head-main td:first-child {
-    padding-left: 5px;
-}
+.applications-table td {
+  height: 78px;
 
-.head-main th:last-child,
-.head-main td:last-child {
-    padding-right: 5px;
-    text-align: center;
-    min-width: 80px; /* Reduce width for the status column */
-}
+  border-top: 1px solid #eef0f4;
 
-/* Status Badge Adjustments */
-.applied-right .badge {
-    font-size: 10px; /* Reduce font size */
-    padding: 4px 6px; /* Smaller padding */
-    min-width: 60px; /* Minimum width for better fit */
-}
+  color: #334155;
 
+  font-size: 14px;
 }
 
 
+/* =========================================================
+   TABLE HEADING
+========================================================= */
+
+.table-heading {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
 
 
+/* =========================================================
+   DATE
+========================================================= */
+
+.date-cell {
+  display: flex;
+  align-items: center;
+
+  color: #64748b;
+
+  font-size: 13px;
+  font-weight: 600;
+}
 
 
+/* =========================================================
+   JOB
+========================================================= */
+
+.job-title-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.job-title-cell strong {
+  color: #0f172a;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.job-title-cell span {
+  color: #94a3b8;
+
+  font-size: 11px;
+}
 
 
+/* =========================================================
+   COMPANY
+========================================================= */
+
+.company-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-weight: 600;
+  color: #334155;
+}
+
+.company-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  overflow: hidden;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #6366f1;
+}
+
+.company-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  padding: 6px;
+}
 
 
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-column {
+  text-align: right !important;
+}
+
+.application-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+}
 
 
+/* PENDING */
+
+.status-pending {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+.status-pending .status-dot {
+  background: #f59e0b;
+}
 
 
+/* ACCEPTED */
+
+.status-accepted {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.status-accepted .status-dot {
+  background: #22c55e;
+}
 
 
+/* REJECTED */
+
+.status-rejected {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.status-rejected .status-dot {
+  background: #ef4444;
+}
 
 
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.no-applications {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-height: 260px;
+
+  text-align: center;
+}
+
+.no-applications-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 55px;
+  height: 55px;
+
+  margin-bottom: 14px;
+
+  border-radius: 16px;
+
+  color: #6366f1;
+  background: #eef2ff;
+}
+
+.no-applications h3 {
+  margin: 0;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #0f172a;
+}
+
+.no-applications p {
+  margin-top: 5px;
+
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .applications-table {
+    min-width: 650px;
+  }
+
+}

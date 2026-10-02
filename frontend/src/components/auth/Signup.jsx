@@ -8,10 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { toast } from "sonner";
-import { useDispatch, useSelector } from 'react-redux'
-import { setLoading } from '@/redux/authSlice'
-import { Loader2 } from "lucide-react";
-import './Signup.css';
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "@/redux/authSlice";
+import { Loader2, UserPlus } from "lucide-react";
+import "./Signup.css";
 
 const Signup = () => {
   const [input, setInput] = useState({
@@ -22,178 +22,345 @@ const Signup = () => {
     role: "",
     file: "",
   });
-  const {loading,user} = useSelector(store=>store.auth);
+
+  const { loading, user } = useSelector((store) => store.auth);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const changeEventHandler = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
   };
+
   const changeFileHandler = (e) => {
-    setInput({ ...input, file: e.target.files?.[0] });
+    setInput({
+      ...input,
+      file: e.target.files?.[0],
+    });
   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    // console.log(input);
-    const formData = new FormData(); //formdata object
+
+    if (!input.role) {
+      toast.error("Please select Student or Recruiter");
+      return;
+    }
+
+    const formData = new FormData();
+
     formData.append("fullname", input.fullname);
     formData.append("email", input.email);
     formData.append("phoneNumber", input.phoneNumber);
     formData.append("password", input.password);
     formData.append("role", input.role);
+
     if (input.file) {
       formData.append("file", input.file);
     }
 
     try {
       dispatch(setLoading(true));
-      const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-        withCredentials: true,
-      });
+
+      const res = await axios.post(
+        `${USER_API_END_POINT}/register`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
+
       if (res.data.success) {
-        navigate("/login");
         toast.success(res.data.message);
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
-      } finally{
+
+      toast.error(
+        error?.response?.data?.message ||
+          "Something went wrong. Please try again."
+      );
+    } finally {
       dispatch(setLoading(false));
     }
   };
 
-  useEffect(()=>{
-      if(user){
-          navigate("/");
-      }
-  },[])
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   return (
-    <div>
+    <div className="auth-page">
       <Navbar />
-      <div className='signup-main flex items-center justify-center w-full mt-6 ml-[330px]'>
-        <form
-          onSubmit={submitHandler}
-          className='signup-main w-[620px] border border-gray-200 rounded-md p-4 my-10'
-        >
-          <h1 className='font-bold text-xl mb-5'>Sign Up</h1>
-          <div className='my-2'>
-            <Label>Full Name</Label>
-            <Input
-              type='text'
-              value={input.fullname}
-              name='fullname'
-              onChange={changeEventHandler}
-              placeholder='Your name'
-            />
-          </div>
-          <div className='my-2'>
-            <Label>Email</Label>
-            <Input
-              type='email'
-              value={input.email}
-              name='email'
-              onChange={changeEventHandler}
-              placeholder='abc@gmail.com'
-            />
-          </div>
-          <div className='my-2'>
-            <Label>Phone Number</Label>
-            <Input
-              type='text'
-              value={input.phoneNumber}
-              name='phoneNumber'
-              onChange={changeEventHandler}
-              placeholder='123456789'
-            />
-          </div>
-          <div className='my-2'>
-            <Label>Password</Label>
-            <Input
-              type='password'
-              value={input.password}
-              name='password'
-              onChange={changeEventHandler}
-              placeholder='********'
-            />
-          </div>
-          <div className='flex items-center justify-between'>
-            <RadioGroup className='flex items-center gap-4 my-5'>
-              <div className='flex items-center space-x-2'>
-                <Input
-                  type='radio'
-                  name='role'
-                  value='student'
-                  id='r1'
-                  checked={input.role === "student"}
-                  onChange={changeEventHandler}
-                  className='cursor-pointer peer hidden'
-                />
-                <Label
-                  htmlFor='r1'
-                  className='cursor-pointer bg-gray-200 p-2 rounded  text-gray-800  peer-checked:bg-green-500 peer-checked:text-white'
-                >
-                  Student
-                </Label>
+
+      <main className="auth-container">
+        <div className="auth-card signup-card">
+
+          {/* LEFT SIDE */}
+          <div className="auth-visual signup-visual">
+            <div className="auth-visual-content">
+
+              <div className="auth-icon">
+                <UserPlus size={30} />
               </div>
-              <div className='flex items-center space-x-2'>
-                <Input
-                  type='radio'
-                  name='role'
-                  value='recruiter'
-                  id='r2'
-                  checked={input.role === "recruiter"}
-                  onChange={changeEventHandler}
-                  className='cursor-pointer peer hidden'
-                />
-                <Label
-                  htmlFor='r2'
-                  className='cursor-pointer bg-gray-200 p-2 rounded text-gray-800 peer-checked:bg-red-500 peer-checked:text-white'
-                >
-                  Recruiter
-                </Label>
+
+              <h2>
+                Start your journey
+                <span> with JobHunt</span>
+              </h2>
+
+              <p>
+                Create your account and discover opportunities
+                that match your skills, career goals and ambitions.
+              </p>
+
+              <div className="auth-points">
+                <div>
+                  <span>✓</span>
+                  Discover relevant jobs
+                </div>
+
+                <div>
+                  <span>✓</span>
+                  Save and bookmark jobs
+                </div>
+
+                <div>
+                  <span>✓</span>
+                  Apply with ease
+                </div>
               </div>
-            </RadioGroup>
-          </div>
-            <div className='img-cng flex items-center gap-1'>
-              <Label className='ml-64 lbl'>Profile</Label>
-              <Input
-                accept='image/*'
-                type='file'
-                onChange={changeFileHandler}
-                className='cursor-pointer w-64 ml-4 bg-[#8c8cf2] hover:bg-[#62fffa] text-black'
-                variant='outline'
-              />
+
             </div>
-          {loading ? (
-            <Button className='w-full my-4'>
-              <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-              Please wait{" "}
-            </Button>
-          ) : (
-            <Button
-              type='submit'
-              variant='outline'
-              className='w-full my-4 bg-[#4040e8] hover:bg-[#62fffa] text-white outline-black'
-            >
-              Signup
-            </Button>
-          )}
-          <span className='text-sm '>
-            Already have an account?
-            <Link to='/login' className='text-blue-600'>
-              <Button
-                type='submit'
-                variant='outline'
-                className=' submit-signupp w-20 my-4 ml-[4rem] bg-[#4040e8] hover:bg-[#62fffa] text-white outline-black'
-              >
-                Login
-              </Button>
-            </Link>
-          </span>
-        </form>
-      </div>
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div className="auth-form-container">
+
+            <div className="auth-heading">
+              <h1>Create Account</h1>
+              <p>
+                Join JobHunt and take the next step in your career.
+              </p>
+            </div>
+
+            <form onSubmit={submitHandler} className="auth-form">
+
+              {/* FULL NAME */}
+              <div className="form-group">
+                <Label htmlFor="fullname">
+                  Full Name
+                </Label>
+
+                <Input
+                  id="fullname"
+                  type="text"
+                  value={input.fullname}
+                  name="fullname"
+                  onChange={changeEventHandler}
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              {/* EMAIL */}
+              <div className="form-group">
+                <Label htmlFor="email">
+                  Email Address
+                </Label>
+
+                <Input
+                  id="email"
+                  type="email"
+                  value={input.email}
+                  name="email"
+                  onChange={changeEventHandler}
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+
+              {/* PHONE */}
+              <div className="form-group">
+                <Label htmlFor="phoneNumber">
+                  Phone Number
+                </Label>
+
+                <Input
+                  id="phoneNumber"
+                  type="tel"
+                  value={input.phoneNumber}
+                  name="phoneNumber"
+                  onChange={changeEventHandler}
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+
+              {/* PASSWORD */}
+              <div className="form-group">
+                <Label htmlFor="password">
+                  Password
+                </Label>
+
+                <Input
+                  id="password"
+                  type="password"
+                  value={input.password}
+                  name="password"
+                  onChange={changeEventHandler}
+                  placeholder="Create a strong password"
+                  required
+                />
+              </div>
+
+              {/* ROLE */}
+              <div className="form-group">
+                <Label className="role-title">
+                  Account Type
+                </Label>
+
+                <RadioGroup className="role-selection">
+
+                  <div className="role-option">
+                    <Input
+                      type="radio"
+                      name="role"
+                      value="student"
+                      id="student-role"
+                      checked={input.role === "student"}
+                      onChange={changeEventHandler}
+                      className="role-radio"
+                    />
+
+                    <Label
+                      htmlFor="student-role"
+                      className={`role-card ${
+                        input.role === "student"
+                          ? "active-student"
+                          : ""
+                      }`}
+                    >
+                      <span className="role-card-title">
+                        Student
+                      </span>
+
+                      <span className="role-card-description">
+                        Find jobs and build your career
+                      </span>
+                    </Label>
+                  </div>
+
+                  <div className="role-option">
+                    <Input
+                      type="radio"
+                      name="role"
+                      value="recruiter"
+                      id="recruiter-role"
+                      checked={input.role === "recruiter"}
+                      onChange={changeEventHandler}
+                      className="role-radio"
+                    />
+
+                    <Label
+                      htmlFor="recruiter-role"
+                      className={`role-card ${
+                        input.role === "recruiter"
+                          ? "active-recruiter"
+                          : ""
+                      }`}
+                    >
+                      <span className="role-card-title">
+                        Recruiter
+                      </span>
+
+                      <span className="role-card-description">
+                        Hire talented candidates
+                      </span>
+                    </Label>
+                  </div>
+
+                </RadioGroup>
+              </div>
+
+              {/* PROFILE */}
+              <div className="form-group">
+
+                <Label htmlFor="profile">
+                  Profile Picture
+                  <span className="optional">
+                    Optional
+                  </span>
+                </Label>
+
+                <div className="file-upload">
+                  <Input
+                    id="profile"
+                    accept="image/*"
+                    type="file"
+                    onChange={changeFileHandler}
+                    className="file-input"
+                  />
+                </div>
+
+                {input.file && (
+                  <p className="selected-file">
+                    ✓ {input.file.name}
+                  </p>
+                )}
+
+              </div>
+
+              {/* SIGNUP BUTTON */}
+              {loading ? (
+                <Button
+                  type="button"
+                  disabled
+                  className="auth-submit"
+                >
+                  <Loader2 className="loading-icon" />
+                  Creating account...
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="auth-submit"
+                >
+                  Create Account
+                </Button>
+              )}
+
+            </form>
+
+            {/* LOGIN */}
+            <div className="auth-switch">
+              <span>
+                Already have an account?
+              </span>
+
+              <Link to="/login">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="auth-secondary-button"
+                >
+                  Login
+                </Button>
+              </Link>
+            </div>
+
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

@@ -1,23 +1,69 @@
-/* Styles for tablets and below */
+/* =========================================
+   APPLICANTS PAGE
+========================================= */
+
+.applicants-page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.applicant-main {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 4rem 2rem 5rem;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .applicant-main {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
 @media (max-width: 750px) {
-    
-:root .applicant-main{
-    margin-top: 5rem;
-    margin-left: 1rem;
-    width: 20rem;
-}
 
+  .applicant-main {
+    width: 100%;
 
+    margin: 0;
 
+    padding: 2rem 1rem 3rem;
 
-
-
-
-
-
-
-   
-
+    box-sizing: border-box;
+  }
 
 }
-     
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+  .applicant-main {
+    padding: 1.5rem 0.7rem 2.5rem;
+  }
+
+}
